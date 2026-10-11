@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>哈佛积极心理学 · 幸福课完整学习资料</title>
+<meta name="description" content="哈佛大学《积极心理学》(幸福课, Tal Ben-Shahar) 23课完整学习资料交互版。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23F4A63C'/%3E%3Cpath d='M9 18a7 7 0 0 1 14 0' stroke='%23fff' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+/* ============ 设计 token ============ */
+:root{
+  --bg:#FBF7F0;
+  --bg-soft:#F4EDE1;
+  --paper:#FFFFFF;
+  --ink:#2B2620;
+  --ink-soft:#6B6155;
+  --line:#E7DCCB;
+  --sun:#E8993D;        /* 金色 · 阳光/积极 */
+  --sun-deep:#C97A24;
+  --sky:#5B8DAE;        /* 清晨蓝 · 宁静 */
+  --sky-soft:#EAF1F5;
+  --leaf:#7A9B6B;       /* 绿 · 成长 */
+  --warm:#C96F5C;       /* 陶红 · 关系 */
+  --shadow:0 6px 24px rgba(70,50,20,.08);
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Noto Sans SC",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.85;
+  font-size:var(--fs,16px);
+}
+::selection{background:rgba(232,153,61,.25)}
+
+/* ============ 顶部 Hero ============ */
+.hero{
+  position:relative;
+  background:
+    radial-gradient(1200px 400px at 80% -10%, rgba(232,153,61,.18), transparent 60%),
+    radial-gradient(900px 400px at 5% 10%, rgba(91,141,174,.16), transparent 60%),
+    var(--bg-soft);
+  border-bottom:1px solid var(--line);
+  padding:56px 24px 40px;
+  text-align:center;
+  overflow:hidden;
+}
+.hero .sunmark{
+  width:56px;height:56px;margin:0 auto 18px;
+  background:radial-gradient(circle at 50% 45%, var(--sun), var(--sun-deep));
+  border-radius:50%;
+  display:grid;place-items:center;
+  box-shadow:0 0 0 8px rgba(232,153,61,.15);
+}
+.hero .sunmark svg{width:30px;height:30px}
+.hero h1{
+  font-size:clamp(26px,4.5vw,44px);
+  font-weight:900;
+  letter-spacing:.5px;
+  color:var(--ink);
+}
+.hero .sub{
+  margin-top:10px;
+  font-size:clamp(14px,2vw,17px);
+  color:var(--ink-soft);
+  max-width:640px;margin-left:auto;margin-right:auto;
+}
+.hero .meta{
+  margin-top:18px;
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+}
+.hero .chip{
+  background:var(--paper);
+  border:1px solid var(--line);
+  color:var(--ink-soft);
+  font-size:12.5px;
+  padding:5px 12px;border-radius:999px;
+}
+.hero .stats{
+  margin-top:22px;display:flex;gap:26px;justify-content:center;flex-wrap:wrap;
+}
+.hero .stat{text-align:center}
+.hero .stat b{display:block;font-size:28px;color:var(--sun-deep);font-weight:800}
+.hero .stat span{font-size:12px;color:var(--ink-soft)}
+
+/* ============ 布局 ============ */
+.layout{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;gap:24px;align-items:flex-start}
+.main{flex:1;min-width:0;padding:28px 0 80px}
+
+/* ============ 侧边导航 ============ */
+.sidebar{
+  width:264px;flex-shrink:0;
+  position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto;
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  padding:14px;
+}
+.sidebar h3{
+  font-size:13px;color:var(--ink-soft);text-transform:none;letter-spacing:1px;
+  margin:12px 6px 8px;font-weight:700;
+}
+.sidebar .phase{font-size:12px;color:var(--sky);font-weight:700;margin:14px 8px 6px}
+.navlist{list-style:none}
+.navlist li{margin:2px 0}
+.navlist a{
+  display:flex;align-items:center;gap:8px;
+  padding:6px 8px;border-radius:8px;
+  color:var(--ink-soft);text-decoration:none;font-size:13.5px;
+  transition:background .15s,color .15s;
+}
+.navlist a:hover{background:var(--bg-soft);color:var(--ink)}
+.navlist a.active{background:var(--sky-soft);color:var(--sky);font-weight:600}
+.navlist a .no{font-size:11.5px;color:var(--sun-deep);font-weight:700;width:20px;flex-shrink:0}
+.navlist a .dot{margin-left:auto;width:10px;height:10px;border-radius:50%;background:var(--line)}
+.navlist a.done .dot{background:var(--leaf)}
+
+/* ============ 进度条 ============ */
+.progressbar{
+  position:sticky;top:0;z-index:20;
+  background:var(--paper);border-bottom:1px solid var(--line);
+  padding:10px 20px;
+}
+.progressbar .inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:14px}
+.progressbar .label{font-size:12.5px;color:var(--ink-soft);white-space:nowrap}
+.progressbar .track{flex:1;height:8px;background:var(--bg-soft);border-radius:99px;overflow:hidden}
+.progressbar .fill{height:100%;width:0%;background:linear-gradient(90deg,var(--sun),var(--sun-deep));border-radius:99px;transition:width .4s}
+.progressbar .pct{font-size:12.5px;color:var(--sun-deep);font-weight:700;min-width:44px;text-align:right}
+
+/* ============ 视图容器 ============ */
+.view{display:none}
+.view.active{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ============ 课卡片 ============ */
+.lesson-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  margin-bottom:22px;overflow:hidden;
+}
+.lesson-head{
+  padding:22px 26px 18px;border-bottom:1px solid var(--line);
+  display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;
+}
+.lesson-head .badge{
+  width:46px;height:46px;flex-shrink:0;border-radius:12px;
+  background:var(--sky-soft);color:var(--sky);
+  display:grid;place-items:center;font-size:20px;font-weight:800;
+}
+.lesson-head .badge.gold{background:rgba(232,153,61,.16);color:var(--sun-deep)}
+.lesson-head h2{font-size:21px;font-weight:800;line-height:1.3}
+.lesson-head .theme{color:var(--ink-soft);font-size:13.5px;margin-top:2px}
+.lesson-body{padding:8px 26px 24px}
+.section-label{
+  font-size:12.5px;font-weight:800;letter-spacing:1px;
+  color:var(--paper);padding:3px 12px;border-radius:999px;display:inline-block;
+  margin:16px 0 10px;
+}
+.section-label.key{background:var(--sun)}
+.section-label.deep{background:var(--sky)}
+.section-label.quote{background:var(--leaf)}
+.card-list{list-style:none}
+.card-list li{
+  position:relative;padding:6px 0 6px 22px;font-size:15px;
+}
+.card-list li::before{
+  content:"";position:absolute;left:2px;top:16px;width:8px;height:8px;border-radius:50%;
+  background:var(--sun);
+}
+.section-label.deep + .card-list li::before{background:var(--sky)}
+.deep-block{margin:8px 0 0}
+.deep-block .dtitle{
+  font-weight:700;font-size:15px;color:var(--ink);margin:16px 0 4px;
+  padding-left:10px;border-left:3px solid var(--sun);
+}
+.card-list li b{color:var(--sun-deep)}
+.deep-block .card-list li b{color:var(--sky)}
+.quote-block{
+  background:var(--bg-soft);border-radius:10px;
+  padding:14px 18px;margin:8px 0;
+  font-size:15px;color:var(--ink);line-height:1.8;
+}
+.quote-block .src{display:block;margin-top:4px;font-size:12px;color:var(--ink-soft)}
+.quote-block .src::before{content:"— ";color:var(--sun-deep)}
+
+/* ============ 总览地图 ============ */
+.overview .phase-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:22px 24px;margin-bottom:20px;
+}
+.phase-card h2{font-size:18px;font-weight:800;color:var(--ink);display:flex;align-items:center;gap:10px}
+.phase-card .ph-tag{font-size:12px;padding:2px 10px;border-radius:999px;color:#fff;font-weight:700}
+.phase-card p.ph-desc{color:var(--ink-soft);font-size:13.5px;margin-top:4px}
+.phase-card .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:16px}
+.phase-card .grid a{
+  text-decoration:none;color:var(--ink);background:var(--bg-soft);
+  border:1px solid var(--line);border-radius:10px;padding:12px;
+  font-size:14px;display:flex;gap:8px;align-items:center;
+  transition:transform .15s,border-color .15s;
+}
+.phase-card .grid a:hover{transform:translateY(-2px);border-color:var(--sun)}
+.phase-card .grid a .no{color:var(--sun-deep);font-weight:800}
+.phase-card .grid a .st{margin-left:auto;font-size:11px;color:var(--ink-soft)}
+
+/* ============ 速查表 ============ */
+.concept-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:24px;margin-bottom:20px;
+}
+.searchbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.searchbar input{
+  flex:1;min-width:200px;padding:10px 14px;border:1px solid var(--line);
+  border-radius:10px;font-size:14px;background:var(--bg);
+  font-family:inherit;outline:none;transition:border-color .15s;
+}
+.searchbar input:focus{border-color:var(--sun)}
+.concept-table{width:100%;border-collapse:collapse;table-layout:fixed}
+.concept-table col:nth-child(1){width:22%}
+.concept-table col:nth-child(2){width:58%}
+.concept-table col:nth-child(3){width:20%}
+.concept-table th{
+  text-align:left;padding:10px 12px;font-size:13px;color:var(--ink-soft);
+  border-bottom:2px solid var(--sun);background:var(--bg-soft);
+}
+.concept-table td{padding:9px 12px;font-size:13.5px;border-bottom:1px solid var(--line);vertical-align:top}
+.concept-table tr:hover td{background:var(--bg-soft)}
+.concept-table .cname{font-weight:700;color:var(--sky)}
+.concept-table .ccur{color:var(--ink-soft);font-size:12.5px;white-space:nowrap}
+.empty{color:var(--ink-soft);text-align:center;padding:20px;font-size:14px}
+
+/* ============ 勘误说明 ============ */
+.erratum-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:24px;margin-bottom:20px;
+}
+.erratum-card h2{font-size:19px;font-weight:800;margin-bottom:4px}
+.erratum-card .intro{color:var(--ink-soft);font-size:13.5px;margin-bottom:16px}
+.erratum-card h3{font-size:15px;font-weight:700;margin:18px 0 8px;color:var(--ink)}
+.erratum-card .ok{color:var(--leaf);font-weight:800}
+.erratum-card .warn{color:var(--warm);font-weight:800}
+.erratum-card ul{padding-left:22px;font-size:14.5px}
+.erratum-card li{margin:6px 0}
+
+/* ============ 金句轮播 ============ */
+.quote-daily{
+  background:linear-gradient(120deg,rgba(232,153,61,.12),rgba(91,141,174,.10)),var(--bg-soft);
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px;text-align:center;margin-bottom:20px;
+}
+.quote-daily .qtext{font-size:18px;font-weight:600;max-width:560px;margin:0 auto;line-height:1.7;color:var(--ink)}
+.quote-daily .qfrom{color:var(--ink-soft);font-size:13px;margin-top:8px}
+.quote-daily button{
+  margin-top:14px;border:none;background:var(--paper);color:var(--sun-deep);
+  border:1px solid var(--line);padding:8px 18px;border-radius:999px;cursor:pointer;
+  font-family:inherit;font-size:13px;transition:background .15s;
+}
+.quote-daily button:hover{background:#fff}
+
+/* ============ 页脚 ============ */
+.footer{
+  border-top:1px solid var(--line);background:var(--bg-soft);
+  padding:28px 24px;text-align:center;color:var(--ink-soft);font-size:13px;
+}
+.footer b{color:var(--ink)}
+
+/* ============ 学习工具条 ============ */
+.toolbar{
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px;
+}
+.toolbar .title{font-size:15px;font-weight:800;color:var(--ink);margin-right:auto}
+.toolbar button{
+  border:1px solid var(--line);background:var(--paper);color:var(--ink-soft);
+  padding:6px 14px;border-radius:999px;cursor:pointer;font-family:inherit;font-size:12.5px;
+  transition:all .15s;
+}
+.toolbar button:hover{border-color:var(--sun);color:var(--sun-deep)}
+.toolbar button.on{background:var(--sun);color:#fff;border-color:var(--sun)}
+
+/* ============ 响应式 ============ */
+@media(max-width:880px){
+  .layout{flex-direction:column}
+  .sidebar{width:100%;position:static;max-height:none;order:-1}
+  .sidebar .navlist{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
+  .concept-table{display:block;overflow-x:auto}
+}
+@media(max-width:520px){
+  body{font-size:15px}
+  .lesson-head,.lesson-body{padding-left:16px;padding-right:16px}
+  .phase-card .grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .view.active{animation:none}
+}
+
+/* ============ 分区锚点条 ============ */
+.part-bar{
+  display:flex;gap:8px;flex-wrap:wrap;
+  padding:14px 26px;border-bottom:1px solid var(--line);background:var(--bg);
+}
+.part-bar a{
+  text-decoration:none;font-size:13px;font-weight:700;cursor:pointer;
+  color:var(--ink-soft);border:1px solid var(--line);background:var(--paper);
+  padding:5px 14px;border-radius:999px;transition:all .15s;
+}
+.part-bar a:hover{color:var(--sun-deep);border-color:var(--sun)}
+[id^="part-"]{scroll-margin-top:72px}
+
+/* ============ 深入解读折叠 ============ */
+.deep-block .dtitle{
+  cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+.deep-block .chev{transition:transform .2s;flex-shrink:0;font-size:12px;color:var(--ink-soft)}
+.deep-block.collapsed .chev{transform:rotate(-90deg)}
+.deep-block.collapsed .card-list{display:none}
+
+/* ============ 汉堡目录 + 侧栏头部 ============ */
+.s-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.s-head h3{margin:0 6px 4px}
+.menu-toggle{
+  display:none;border:1px solid var(--line);background:var(--bg);color:var(--ink-soft);
+  width:34px;height:30px;border-radius:8px;cursor:pointer;font-size:16px;line-height:1;
+  flex-shrink:0;
+}
+.menu-toggle:hover{color:var(--sun-deep);border-color:var(--sun)}
+.navtop{
+  display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink-soft);
+  padding:8px;border-radius:8px;font-size:13.5px;cursor:pointer;
+}
+.navtop:hover{background:var(--bg-soft);color:var(--ink)}
+.navtop.active{background:var(--sky-soft);color:var(--sky);font-weight:600}
+
+/* ============ 字号控制 ============ */
+.font-ctl{display:flex;gap:6px;align-items:center}
+.font-ctl span{font-size:12px;color:var(--ink-soft)}
+.font-ctl button{min-width:36px;text-align:center}
+
+/* ============ 回顶按钮 ============ */
+#toTop{
+  position:fixed;right:24px;bottom:28px;z-index:50;
+  width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line);background:var(--paper);color:var(--sun-deep);
+  font-size:18px;cursor:pointer;box-shadow:var(--shadow);
+  display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .2s;
+}
+#toTop.show{opacity:1;pointer-events:auto}
+#toTop:hover{background:#fff}
+
+/* ============ toast 提示 ============ */
+#toast{
+  position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:var(--paper);padding:10px 20px;border-radius:999px;
+  font-size:13.5px;opacity:0;pointer-events:none;transition:all .3s;z-index:60;
+  box-shadow:var(--shadow);max-width:90vw;text-align:center;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ============ 金句全库 modal ============ */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(43,38,32,.45);z-index:70;
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:var(--paper);border-radius:var(--radius);max-width:640px;width:100%;
+  max-height:80vh;display:flex;flex-direction:column;box-shadow:var(--shadow);
+  border:1px solid var(--line);overflow:hidden;
+}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--line)}
+.modal-head h3{font-size:17px;font-weight:800}
+.modal-head button{border:none;background:none;font-size:24px;cursor:pointer;color:var(--ink-soft);line-height:1;padding:0 4px}
+.modal-head button:hover{color:var(--ink)}
+.modal-body{overflow-y:auto;padding:18px 22px}
+.modal-body .m-quote{background:var(--bg-soft);border-radius:8px;padding:10px 14px;margin:8px 0;font-size:14.5px}
+.modal-body .m-quote .f{display:block;font-size:12px;color:var(--ink-soft);margin-top:3px}
+
+@media(max-width:880px){
+  .menu-toggle{display:block}
+  .sidebar .navwrap{display:none}
+  .sidebar.open .navwrap{display:block}
+  #toTop{right:16px;bottom:20px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="sunmark">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M4 18a8 8 0 0 1 16 0" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M12 3v2M5 6l1.5 1.5M19 6l-1.5 1.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+  </div>
+  <h1>哈佛积极心理学 · 幸福课</h1>
+  <p class="sub">Positive Psychology · Tal Ben-Shahar · 全23讲完整学习资料（交互版）</p>
+  <div class="meta">
+    <span class="chip">9 份笔记交叉整合</span>
+    <span class="chip">核心要点 · 深入解读 · 金句</span>
+    <span class="chip">附速查表 + 勘误说明</span>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>23</b><span>课时</span></div>
+    <div class="stat"><b>5</b><span>学习阶段</span></div>
+    <div class="stat"><b>24</b><span>VIA 性格优势</span></div>
+  </div>
+</header>
+
+<div class="progressbar">
+  <div class="inner">
+    <span class="label">学习进度</span>
+    <div class="track"><div class="fill" id="progFill"></div></div>
+    <span class="pct" id="progPct">0/23</span>
+  </div>
+</div>
+
+<div class="layout">
+
+  <!-- ===== 侧边导航 ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="s-head">
+      <h3>学习目录</h3>
+      <button class="menu-toggle" id="menuToggle" aria-label="展开或收起目录">☰</button>
+    </div>
+    <div class="navwrap">
+      <a href="#overview" class="navtop" data-nav="overview">课程总览</a>
+      <div id="sideNav"></div>
+    </div>
+  </aside>
+
+  <!-- ===== 主内容 ===== -->
+  <main class="main">
+
+    <!-- 视图：总览 -->
+    <section class="view" id="view-overview">
+      <div class="toolbar">
+        <span class="title">23课全貌地图</span>
+        <button id="resetAllBtn">重置学习进度</button>
+      </div>
+      <div id="overviewBody"></div>
+    </section>
+
+    <!-- 视图：逐课 -->
+    <section class="view" id="view-lessons">
+      <div class="toolbar">
+        <span class="title">课程学习</span>
+        <div class="font-ctl"><span>字号</span><button id="fontDec" aria-label="缩小字号">A-</button><button id="fontInc" aria-label="放大字号">A+</button></div>
+      </div>
+      <div class="quote-daily" id="quoteDaily"></div>
+      <div id="lessonBody"></div>
+      <div class="toolbar" style="margin-top:6px">
+        <button id="prevBtn">← 上一课</button>
+        <button id="nextBtn">下一课 →</button>
+        <span id="curPos" style="margin-left:auto;font-size:13px;color:var(--ink-soft)"></span>
+      </div>
+    </section>
+
+    <!-- 视图：速查表 -->
+    <section class="view" id="view-concepts">
+      <div class="toolbar"><span class="title">高频概念速查表</span></div>
+      <div class="concept-card">
+        <div class="searchbar">
+          <input type="text" id="conceptSearch" placeholder="输入关键词搜索概念（如：自尊 / ABC / 乐观）">
+          <button id="clearSearch">清除</button>
+        </div>
+        <table class="concept-table">
+          <colgroup><col><col><col></colgroup>
+          <thead><tr><th>概念</th><th>含义</th><th>出处课次</th></tr></thead>
+          <tbody id="conceptBody"></tbody>
+        </table>
+        <div class="empty" id="conceptEmpty" style="display:none">未找到匹配的概念</div>
+      </div>
+    </section>
+
+    <!-- 视图：勘误说明 -->
+    <section class="view" id="view-erratum">
+      <div class="toolbar"><span class="title">交叉校验说明与勘误</span></div>
+      <div class="erratum-card" id="erratumBody"></div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="footer">
+  <p><b>哈佛积极心理学（幸福课）· 完整学习资料</b></p>
+  <p>由 9 份网络逐课笔记交叉整合而成，非官方教材，建议配合原版视频使用。</p>
+  <p style="margin-top:6px;font-size:12px">更新时间：2026-10-11 · 来源见各章节标注</p>
+</footer>
+
+<button id="toTop" aria-label="回到顶部">↑</button>
+<div id="toast"></div>
+
+<!-- 金句全库 modal -->
+<div class="modal-overlay" id="quoteModal">
+  <div class="modal">
+    <div class="modal-head"><h3>全部金句</h3><button id="quoteClose" aria-label="关闭">×</button></div>
+    <div class="modal-body" id="quoteModalBody"></div>
+  </div>
+</div>
+
+<script>
+/* ============ 数据：阶段 ============ */
+const PHASES=[
+  {name:"基础篇",desc:"是什么、为什么",tag:"#5B8DAE",lessons:[1,2,3]},
+  {name:"观念篇",desc:"怎样看世界",tag:"#7A9B6B",lessons:[4,5,6,7,8]},
+  {name:"方法篇",desc:"怎样改变",tag:"#E8993D",lessons:[9,10,11,12,13]},
+  {name:"行动篇",desc:"具体怎么做",tag:"#C97A24",lessons:[14,15,16,17]},
+  {name:"关系与自我篇",desc:"爱情 · 自尊 · 收获",tag:"#C96F5C",lessons:[18,19,20,21,22,23]}
+];
+
+/* ============ 数据：速查表 ============ */
+const CONCEPTS=[
+  {n:"transformation",d:"改变认知的'容器形状'，比信息本身重要",c:"1"},
+  {n:"Focus creates reality",d:"专注/问题创造现实",c:"2、7"},
+  {n:"No one is coming",d:"没人会来拯救你，自己对自己负责",c:"2、21"},
+  {n:"Disease vs Health Model",d:"治病 vs 强身健体",c:"3"},
+  {n:"The permission to be human",d:"允许自己为人，接受情绪是天性",c:"4"},
+  {n:"ABC",d:"Affect情感 / Behavior行为 / Cognition认知",c:"4、10"},
+  {n:"Be the change",d:"成为你想看到的改变（以身作则）",c:"5"},
+  {n:"Self-fulfilling prophecy",d:"信念即自我实现的预言",c:"5、6"},
+  {n:"3Ms",d:"Magnify夸大 / Minimize缩小 / Making up捏造",c:"7"},
+  {n:"3P",d:"Permission / Positive / Perspective",c:"7"},
+  {n:"Benefit-finder",d:"知足常乐者，关注美好",c:"7、8"},
+  {n:"幸福感公式",d:"基因50% + 环境10% + 意向活动40%",c:"10"},
+  {n:"巅峰体验（peak experience）",d:"全神贯注、最自信时的最佳状态",c:"10、16"},
+  {n:"舒适区/学习区/恐慌区",d:"改变应在学习区（拉伸区）",c:"11"},
+  {n:"Coherence 相干性",d:"可理解性+可管理性+意义感",c:"12"},
+  {n:"短跑选手模式",d:"冲刺-休整-冲刺-休整（间歇性训练）",c:"13"},
+  {n:"五分钟起飞",d:"Just Do It，先行动态度随之改变",c:"14"},
+  {n:"完美主义 vs 卓越主义",d:"失能性恐惧 vs 享受过程",c:"15"},
+  {n:"赞美努力 vs 赞美天赋",d:"强调努力给掌控感，强调天赋剥夺掌控感",c:"15、16"},
+  {n:"神奇配方",d:"运动+冥想+睡眠+拥抱",c:"16、17"},
+  {n:"寻找心态 vs 培养心态",d:"培养感情 > 找到对的人",c:"19、20"},
+  {n:"被了解 > 被认可",d:"表达自己 > 取悦别人",c:"19、21"},
+  {n:"主动建设性回应",d:"真诚共情地回应积极事件",c:"19"},
+  {n:"积极幻觉",d:"对彼此评价高于外人评价的情侣更长久",c:"19"},
+  {n:"依赖/独立/无条件自尊",d:"三种自尊的渐进模型",c:"21、22"},
+  {n:"六个提高自尊练习",d:"诚实/自我意识/目标/责任/接纳/自信",c:"21"},
+  {n:"无名咒语练习",d:"抛开赞扬声望，你会做什么？",c:"22"},
+  {n:"VIA 性格优势清单",d:"24项性格优势，聚焦最本能优势",c:"13"},
+  {n:"无意识/潜意识障碍",d:"觉得'不值得幸福'，大脑拒绝不一致",c:"17"},
+  {n:"主动的爱",d:"行动创造态度，主动表达爱",c:"19"},
+  {n:"自我认证理论",d:"认为自己不值得幸福，就少做幸福的事",c:"17、21"}
+];
+
+/* ============ 数据：勘误 ============ */
+const ERRATUM={
+  intro:"以下对 9 份来源笔记 + 本整合版做逐项比对。A 为各来源高度一致、可放心引用的要点；B 为存在出入、已在整合版正文优先采用多数/权威一致版本的地方。",
+  A:[
+    "幸福感公式：基因50% + 环境10% + 意向活动40%（多源一致）",
+    "三大势力：行为主义→精神分析→人本主义（人本主义由马斯洛创立、罗杰斯为代表）",
+    "'1英里4分钟'：1954年罗杰·班尼斯特跑出3分59秒4，其后美国选手3分57秒、第二年37人、再一年超300人",
+    "皮格马利翁/罗森塔尔效应：随机挑'有潜力'学生，老师高期待使其进步",
+    "正和博弈：幸福是正和（positive-sum）而非零和",
+    "三种自尊：依赖型→独立型→无条件自尊，渐进模型，人人兼有",
+    "ABC / 3M / 3P / 被了解>被认可 / 主动建设性回应 / 共同目标化解冲突：各来源表述一致",
+    "六大提高自尊练习（正直/自我意识/目标/责任/自我接纳/自信）：各来源一致"
+  ],
+  B:[
+    "冥想时长：多数（及本版）采用 15分钟/周6-7次；个别笔记写'50分钟'，判断为笔误未采用",
+    "拥抱数：神奇配方采用 12个/天；第18课'每天至少5个'属不同课表述，分层保留",
+    "运动频率：配方采用 每周4次；第3课'每周3次与抗抑郁药相当'属不同语境，分别保留",
+    "人名：采用'罗杰·班尼斯特'（正确）；个别笔记写'罗杰斯'，判断为笔误未采用"
+  ],
+  note:"各来源为网友/机构个人整理，个别数字可能因记录自不同课次而略有出入。建议以原版视频（B站/网易公开课'哈佛 幸福课'）为准。概念偶有同义异译：如'无条件自尊=绝对自尊'、'追求卓越者=苟求完美者'。"
+};
+
+/* ============ 数据：金句库 ============ */
+const QUOTES=[
+  {t:"幸福感是衡量人生的唯一标准，是所有目标的最终目标。",f:"第1课"},
+  {t:"对信息的解读，比信息本身更重要。",f:"第1课"},
+  {t:"问题缔造现实，你的关注点影响你的认知。",f:"第2课"},
+  {t:"No one is coming. So take responsibility!",f:"第2课"},
+  {t:"When we appreciate the good, the good grows.",f:"第2课"},
+  {t:"改变是可能的，相信这点非常重要。",f:"第3课"},
+  {t:"The permission to be human——给自己，也给他人。",f:"第4课"},
+  {t:"Be the change you want to see in the world.",f:"第5课"},
+  {t:"信念即自我实现的预言，它强大到可以控制身体。",f:"第5课"},
+  {t:"悲观主义者在机会中只看到困难，乐观主义者在困难中看到机会。",f:"第6课"},
+  {t:"Learn to fail, or fail to learn.",f:"第6课"},
+  {t:"心随境转，境由心生。",f:"第7课"},
+  {t:"不要浪费任何一个好的危机。",f:"第7课"},
+  {t:"感激不仅是最大的美德，也是其他美德之源。",f:"第8课"},
+  {t:"如果你愿意，星星每天都为你闪烁。",f:"第8课"},
+  {t:"当你珍视美好时，你将拥有更多美好；无视时，将失去它们。",f:"第9课"},
+  {t:"No quick fix.（改变没有速成之法）",f:"第10课"},
+  {t:"我们先塑造习惯，然后习惯造就我们。",f:"第11课"},
+  {t:"拥有目标让人幸福，而不是实现目标让人幸福。",f:"第12课"},
+  {t:"When we have a 'what for', every 'how' becomes possible.",f:"第12课"},
+  {t:"压力不是问题，问题是没有时间恢复。",f:"第13课"},
+  {t:"时间富裕比物质富裕更让人感到幸福。",f:"第14课"},
+  {t:"想提高成功率，先提高失败率。",f:"第14课"},
+  {t:"完美主义是对失败的失能性恐惧。",f:"第15课"},
+  {t:"锻炼是一种投资，是最不应该撤走的。",f:"第16课"},
+  {t:"运动+冥想，是无副作用的合法'灵药'。",f:"第17课"},
+  {t:"睡眠是一种投资，不是对时间的消耗。",f:"第18课"},
+  {t:"被了解，比被认可更重要。",f:"第19课"},
+  {t:"找到真命天子很重要，但培养感情更重要。",f:"第20课"},
+  {t:"自我概念就是自我命运，自我信念就是自我实现的预言。",f:"第21课"},
+  {t:"追逐荣誉和认可，荣誉会躲避你；躲避荣誉，荣誉会追逐你。",f:"第22课"},
+  {t:"What is the most personal is the most general.",f:"第23课"}
+];
+/* ============ 数据：23课完整内容 ============ */
+const LESSONS=[
+{
+  no:1, theme:"基础篇", title:"什么是积极心理学",
+  key:[
+    "成功最重要的两点：**相信自己** + **永远充满好奇**。",
+    "积极心理学是心理学的\"第三力量\"（人本主义衍生），源于行为主义（第一力量）和精神分析（第二力量）之后。",
+    "这门课教的是 **transformation（转化）** 而非 **information（信息）**：信息像\"填满容器\"，转化像\"改变容器的形状\"。",
+    "**对信息的解读比信息本身更重要**。快乐是头脑的状态，不是实际生活的状态，更不是银行账户的状态。",
+    "课程目标是让\"常识\"变得\"更 common\"（common sense is not that common）。",
+    "学会提出正确的问题（问题创造现实）。"
+  ],
+  deep:[
+    {t:"心理学的三大势力", l:[
+      "**行为主义**：把人看作\"行为的集合\"，靠刺激-反应、奖惩驱动（巴甫洛夫、华生、桑代克）。只研究可观察、可测量的行为。",
+      "**精神分析**：研究潜意识（多为负面）——梦、过失、焦虑、动机冲突、情绪紧张、人格的病理表现（弗洛伊德、荣格、阿德勒）。",
+      "**人本主义**：强调人的正面本质和价值，强调成长和发展（即\"自我实现\"），由马斯洛创立、罗杰斯代表，被称为心理学\"第三势力\"。其弱点是\"理论多、缺实验验证\"，积极心理学则把它变成有实验支撑的科学。"
+    ]},
+    {t:"information vs transformation", l:[
+      "米开朗琪罗的大卫雕像：幸福课的意义在于 **get rid of limitation and barriers**（去除限制和阻碍）——剔除对失败的恐惧、完美主义、职业化思维的束缚。",
+      "\"思想的成长依赖于**减少**，而不是增加。\"（梭罗：减法比加法更能让灵魂成长）",
+      "Knowledge is about information, wisdom is about transformation."
+    ]},
+    {t:"课堂期望（这门课不是来\"听答案\"的）", l:[
+      "不是感谢教了多少新东西，而是**感谢提醒那些你已经知道的东西**。",
+      "不是关于幸福人生的答案，而是**如何发现正确的问题**。只有先发现问题，才能 receive。德鲁克：管理最大的错误在于没提出正确的问题。",
+      "找到 \"the question of question\"（价值观和人生观）。Tal 自己的答案是：**我如何让周围人变得更幸福**。",
+      "相对学习外在的 research，更重要的是探索内在的 search。",
+      "学会简单——复杂之后的简单，才是真正的简单。"
+    ]},
+    {t:"什么样的学生最成功、最幸福？（哈佛MBA毕业20年跟踪）", l:[
+      "共性两点：① **really believe themselves（真的相信自己）**；② **always asking questions（永远在提问，终身学习者）**。",
+      "德鲁克让各行业领袖每周一自问：\"On Monday, what will you do differently?\"",
+      "**教是最好的学**（The best way to learn is going to teach）。"
+    ]},
+    {t:"积极笔记（主动学习法）", l:[
+      "记 **active notes（积极笔记）** 而不是消极笔记：把自己投入进去。",
+      "应用：把笔记分享给他人，并思考\"如何将这些东西应用到生活其他方面\"。"
+    ]}
+  ],
+  quote:[
+    {t:"幸福感是衡量人生的唯一标准，是所有目标的最终目标。",f:"课程主旨"},
+    {t:"对信息的解读，比信息本身更重要。",f:""},
+    {t:"common sense is not that common.（常识往往并不为大众所知）",f:""},
+    {t:"思想的成长依赖于减少，而不是增加。",f:"梭罗"},
+    {t:"提出正确的问题，比找到正确答案更重要。",f:"德鲁克"}
+  ]
+},
+{
+  no:2, theme:"基础篇", title:"为什么要学习积极心理学",
+  key:[
+    "三个原因：① **focus creates reality（专注创造现实）**；② being happy 并不能靠\"解决 unhappy\"获得；③ **解决负面情绪的关键是关注正面情绪**。",
+    "心理学研究32年，消极：积极 ≈ **21:1**（生气5000+、焦虑41000+、沮丧54000+，但快乐仅415篇）。",
+    "从普通变不普通的7个共性：乐观、有信仰/理想主义、助人行为、关注优势、设置目标、有榜样、社会支持。",
+    "**问题创造现实**：你问\"怎么解决焦虑\"，现实就充满焦虑；你问\"怎么更幸福\"，现实就出现幸福。",
+    "遇到问题不怨天尤人：**No one is coming（没人会来拯救你）**——只有你自己能对自己的人生负责。"
+  ],
+  deep:[
+    {t:"为什么研究积极心理学", l:[
+      "1409 年后心理学开始研究失败，但成果无助于现实的改变；1980 年后开始研究成功（人本主义），后续发展成积极心理学。",
+      "预防困苦（抑郁、焦虑）最有效的方法，是**专注于培养积极心态**——是\"增强心理引擎\"而非\"修补心理创伤\"。"
+    ]},
+    {t:"问题创造现实（实验佐证）", l:[
+      "测试：看片子数图形，但问的完全是片子里其他东西，结果很少人知道答案——证明\"关注点决定你能看到什么\"。",
+      "\"我们看到了很多，但没看到的可能更多，而这些没看到的实际都在那里。\"",
+      "蜜月后，与其问\"他为什么不勤快做家务？\"不如问\"怎样让他多承担些家务？\" **When we appreciate the good, the good grows.（珍视美好，美好就会增长）**"
+    ]},
+    {t:"从普通到不普通的7个共性（详解）", l:[
+      "**乐观**：这次没成功，学经验，下次会成。",
+      "**有信仰追求，甚至理想主义**。",
+      "**助人行为**。",
+      "**关注优势**（而非只盯缺陷）。",
+      "**设置目标**。",
+      "**有榜样（role model）**——拥有好榜样是成长最好的方式。",
+      "**社会支持（social support）**。"
+    ]},
+    {t:"成长的核心原则", l:[
+      "遇到问题：先**分析定位定义** → 承担**责任** → 采取**行动**。这才能使人进步、更自信、更有力量。",
+      "牢记 \"No one is coming\"，会逼你真正对自己的人生负责。做个负责的人，永远不要怨天尤人。"
+    ]}
+  ],
+  quote:[
+    {t:"问题缔造现实，你的关注点影响你的认知。",f:""},
+    {t:"关注什么，就将改变什么。",f:""},
+    {t:"No one is coming. So take responsibility!",f:""},
+    {t:"When we appreciate the good, the good grows.（珍视美好，美好就会增值。）",f:""}
+  ]
+},
+{
+  no:3, theme:"基础篇", title:"幸福是一种随机现象吗",
+  key:[
+    "**疾病模型 vs 健康模型**：生病了，疾病模型说\"治病\"，健康模型说\"加强健康\"。",
+    "幸福课的五个前提（Premises）。",
+    "改变是可能的（Change is possible）。",
+    "关注什么，便会得到什么。"
+  ],
+  deep:[
+    {t:"疾病模型 vs 健康模型", l:[
+      "Marva Collins 的问题不是\"如何让学生待在学校\"，而是\"如何在学生心中种下伟大的种子\"。",
+      "Disease Model：远离疾病；Health Model：追求健康。",
+      "培养正面力量的同时，也会防治负面力量——通过培养正面力量使心理引擎更强大，从而解决更多问题。",
+      "treatment 不仅是修复 wrong，更是建设 right。"
+    ]},
+    {t:"幸福课的五个前提（Premises）", l:[
+      "非学术研究，注重生活实用；",
+      "研究变化（How is possible）；",
+      "关注改进、关注解读；",
+      "**接受人性的弱点和缺陷**；",
+      "**幸福快乐是一种追求和美德**。"
+    ]},
+    {t:"如何改变（Change is possible）", l:[
+      "想改变，光靠理想主义和好意不够，还要将研究与**实践**结合。",
+      "**如何处理冲突**：把冲突双方叫到一起反而使冲突加剧；最好为双方设置一个**任何一方都无法单独完成的共同目标**，共同完成即化解冲突。",
+      "**如何提高自尊**：靠空洞赞扬长期无效，**how to prize（怎么表扬）比 prizing（表扬本身）更重要**。",
+      "学什么：① 学习 **what is working**（除了 what is not working）；② 学习**顶尖人群（top 5%）**而非平均；③ 学习**自己的巅峰时刻（personal best）**。",
+      "指数增长的力量：你对3人笑，3人再各自对3人笑，20次之后全世界都在笑（《把爱传出去 Pay it forward》）。一张纸对折41次可达地球。"
+    ]},
+    {t:"真正幸福的人的共性", l:[
+      "leading question：\"How can I make this world a better place?\"（美国人平均每周4小时奉献社会）",
+      "世界上最成功的人一周三次运动，每次半小时。",
+      "Tal 每天花 15-20 分钟沉思/冥想。"
+    ]}
+  ],
+  quote:[
+    {t:"改变是可能的，相信这点非常重要。",f:""},
+    {t:"培养正面力量使心理引擎更强大，所以能解决更多的问题。",f:""}
+  ]
+},
+{
+  no:4, theme:"观念篇", title:"积极的环境能改变人",
+  key:[
+    "**改变没有那么难**——最大障碍是你低估了自己能改变的能力。",
+    "内在因素 vs 外在因素：基本需求满足后，**财富/环境对幸福感影响很小**，内在因素（解读、关注点）才是关键。",
+    "**The permission to be human（允许自己为人）**——接受自己的情绪是天性。",
+    "改变源于头脑，经\"蝴蝶效应\"指数扩散。"
+  ],
+  deep:[
+    {t:"改变没有那么难", l:[
+      "阻碍改变的最大障碍：**人们低估了自己能改变的能力**。",
+      "改变起源于一个人/一组人的头脑，随后 expand 扩散，发生\"蝴蝶效应\"。我们每分钟都在影响周围的人，关键是你往哪个方向影响。"
+    ]},
+    {t:"内在 vs 外在因素（Premise 3）", l:[
+      "从外在因素改变幸福很困难。",
+      "低期望短期使人\"知足常乐\"，但长期并不能使幸福增长。",
+      "升职、去想去的地方、找到梦想的另一半，**对长期幸福感并无明显益处**（例子：获终身职位者，6个月后幸福感回到原水平）。",
+      "财富对 wellbeing 影响很小：基本需要满足后，收入增加 make very little difference。",
+      "**幸福 depends on status of mind**，在于改变自己的 perception / interpretation / focus / transformation。"
+    ]},
+    {t:"人性可改变 vs 不可改变（Premise 4）", l:[
+      "人性无法改变，只能接受；对于人性的弱点，不是 resign（放弃），而是 **channel it（引导它）**——建立制度把人性缺陷转化为好的事物。",
+      "人性是几百万年形成的，无法在有生之年改变，我们能做的是理解它并充分利用它。"
+    ]},
+    {t:"The permission to be human（允许自己为人）", l:[
+      "人有喜怒哀乐是正常的（nervous, guilt, happy, gloomy, upset）——**给自己一个做人的机会**。",
+      "负面情绪来临时，从容接受、不要抗拒（because we are human），它会很快过去；**越压制，情绪反而越被强化**。",
+      "痛苦等负面情绪，对人如重力对物理世界一样正常而不可或缺。",
+      "**active acceptance（主动接受）**：区分 **ABC of psychology**——",
+      "· **Affect（情感/情绪）**：如嫉妒、愤怒，是天性，接受它；",
+      "· **Behavior（行为/行动）**：因为情绪做出的行为，这是可以选择的、可以改变的；",
+      "· **Cognition（想法/认知）**：对情绪的理解，也是可以改变的。",
+      "接受情绪 ≠ 接受行为和认知；关键在于**我如何选择我的行为和认知**。",
+      "负面情绪最好写下来或和朋友聊，**比单纯沉思（rumination）强得多**。",
+      "学积极心理学 ≠ 不会感受负面情绪，而是**能更好地接受和管理它**，让心理免疫系统更强壮。"
+    ]},
+    {t:"推荐冥想方法（非常有益心理健康）", l:[
+      "坐直、放松背、放平脚、深呼吸，思想聚焦在呼吸上，平静之后让所有情绪释放（let it float）。每天1-2次，每次15-20分钟。"
+    ]}
+  ],
+  quote:[
+    {t:"Grant me the serenity to accept the things I cannot change, the courage to change the things I can change, and the wisdom to know the difference.（愿我平静接受无法改变的，有勇气改变能改变的，并有智慧分辨两者。）",f:"安宁祷文"},
+    {t:"The permission to be human——给自己，也给他人。",f:""}
+  ]
+},
+{
+  no:5, theme:"观念篇", title:"环境的力量",
+  key:[
+    "**Happiness 是人生最大、最终的追求**（Premise 5）。",
+    "消极循环（Narrow & Constrain）vs 积极循环（Broad & Build）。",
+    "**人们会做你做的，而不是你说的**（以身作则）。",
+    "**信念即自我实现的预言**（Beliefs as self-fulfilling prophecies）——皮格马利翁效应。"
+  ],
+  deep:[
+    {t:"Premise 5：幸福是且应当是最终目标", l:[
+      "Happiness is important VS happiness ought to be important。",
+      "**消极循环**：Narrow & Constrain → sad → N&C → sad …… 直至 depression（思维越收越窄）。",
+      "**积极循环**：Broad & Build → positive emotion → B&B → PE …… 直至更强的心理系统（积极情绪拓宽思维并建立资源）。"
+    ]},
+    {t:"积极情绪（Positive Emotions）的好处", l:[
+      "It feels good to feel good；",
+      "更快乐 → 更有创造力、能量更大；",
+      "消除负面情绪；对于幸福，要**去追求，而不是逃避\"不幸福\"**；",
+      "心理更健康。"
+    ]},
+    {t:"幸福是\"正和游戏\"（Happiness is a positive sum game）", l:[
+      "追求个人幸福是自私的吗？这个自问成为许多人\"不幸福\"的最重要原因。",
+      "实际上 **being happy is a moral state**：为自己幸福努力，也会为他人幸福做贡献。",
+      "帮助自己就是帮助他人，帮助他人也就是帮助自己。"
+    ]},
+    {t:"人们会做你做的，而不是你说的", l:[
+      "甘地：\"Be the change you want to see in the world.\"（成为你想在世界上看到的改变）",
+      "想传播幸福，先让自己幸福；想教孩子诚实，先做个诚实的父母。",
+      "甘地戒糖的故事：一个月前我也吃过量的糖——示范比说教更有力量。"
+    ]},
+    {t:"信念即自我实现的预言（皮格马利翁效应）", l:[
+      "**\"1英里4分钟\"的故事**：近2000年人们相信这是人类极限。1954年牛津学生罗杰·班尼斯特跑出3分59秒4突破后，六周内美国人跑出3分57秒，第二年37人、再过一年超300人跑进4分钟。**最大障碍在于人的脑子里。**",
+      "皮格马利翁/罗森塔尔效应：对人们的期望值越高，表现越好。实验：告诉老师一群随机学生\"非常有潜力\"，一年后他们进步巨大。",
+      "不要自我设限（如 Marva Collins 不给学生定性，相信潜力无限）。",
+      "**Appreciate the potential, and the potential appreciates.**"
+    ]},
+    {t:"五个前提（Premises）汇总", l:[
+      "Bridge building VS Division and separation",
+      "Change is possible VS Change is illusive",
+      "Internal factors primarily determine happiness VS Happiness is primarily a function of external circumstances",
+      "Human nature must be obeyed VS Human Nature must be perfected",
+      "Happiness is and ought to be the ultimate end VS Happiness should be a secondary pursuit"
+    ]}
+  ],
+  quote:[
+    {t:"Be the change you want to see in the world.（成为你想看到的改变。）",f:"甘地"},
+    {t:"信念即自我实现的预言，它强大到可以控制身体。",f:""},
+    {t:"境随心转，全有意念升起，我们的念头造就了世界。",f:""},
+    {t:"期望什么，就会得到什么，坏事也一样。",f:""}
+  ]
+},
+{
+  no:6, theme:"观念篇", title:"乐观主义",
+  key:[
+    "悲观与乐观的区别**不是盲目乐观**，而是**如何诠释/理解同一件事**（尤其如何解释失败）。",
+    "最成功的科学家，也是失败次数最多的。",
+    "**幸福基准线**：开心/难过都会回到原点，想要提高原点，需直面并解决问题，而非逃避。",
+    "错误的自尊公式 = 实际 / 期望。"
+  ],
+  deep:[
+    {t:"悲观 vs 乐观：如何解释失败", l:[
+      "**悲观主义者**：低期望值、信念不强。失败→\"我早就知道\"（现实）；成功→\"运气好\"。",
+      "**乐观主义者**：高期望值、信念强。失败→\"怎么吸取教训\"；成功→\"我相信，所以我会更努力\"。",
+      "**现实乐观主义 vs 虚无乐观主义**：不要混淆\"最终胜利的信念\"和\"现实的磨练\"——前者必不可少，后者无论如何都要接受。要保持崇高理想与现实之间的完美融合。"
+    ]},
+    {t:"幸福基准线", l:[
+      "遇到挫折时的痛苦会回到原点，快乐也会回到原点。**想提高原点，需直面处理并解决问题，而非逃避问题。**",
+      "直面并解决问题 → 自我认知提高、自我评价上升；且失败带来的痛苦比想象中少得多。",
+      "单次失败不会让你一直痛苦，但**失败后不断地自我否定会无限延长痛苦**。"
+    ]},
+    {t:"乐观如何养成（提前预告，第7、8课详讲）", l:[
+      "采取行动、想象目标、认知疗法（见第7课）；感激（见第8课）。",
+      "幸运的方法之一：**尝试新鲜事物**，更容易看到以前看不到的东西。"
+    ]},
+    {t:"经典故事", l:[
+      "\"最成功的科学家也是失败次数最多的。\"",
+      "赢得彩票几个月后快乐回到从前；失去一百万几个月后痛苦也回到从前——**外在事件对长期幸福感影响很小**。"
+    ]}
+  ],
+  quote:[
+    {t:"悲观主义者在机会中只看到困难，乐观主义者在困难中看到机会。",f:""},
+    {t:"我相信，所以我会加倍努力。",f:""},
+    {t:"Learn to fail, or fail to learn.（学习失败，否则就是失败地学习。）",f:""}
+  ]
+},
+{
+  no:7, theme:"观念篇", title:"逆境还是机遇",
+  key:[
+    "变得更乐观的三种方式：**采取行动、想象（视觉化）、认知疗法**。",
+    "事件 → 评估（想法）→ 情绪 → 行动：**情绪由\"评估\"决定**，想改变情绪，先重建理性、真实的评估。",
+    "**3Ms** 导致非理性思想：夸大（magnify）、缩小/过度归纳（minimize）、伪装捏造（making up）。",
+    "认知重建：把逆境看作机遇。"
+  ],
+  deep:[
+    {t:"变得更乐观的三种方式", l:[
+      "**付诸行动**：一味灌输积极的东西无用，甚至长期有害。把目标置于风险之上，一点点的成功也能提高自我效能。当勇于尝试，幸福基准值螺旋上升；不断逃避，则螺旋下降。",
+      "**想象**：把目标呈现在心中——不仅想象结果，还要想象**具体的行动和实现过程**，并激发情感。想象可以\"愚弄\"大脑，使其无法区分真实与虚幻。",
+      "**认知疗法**：事件→产生评价/想法→激发情绪。如果想改变情绪，就要**重建理性和真实**（即评价环节）。我们常常产生无理性的评价和想法（如：表白被拒→\"我是 loser，不配拥有爱情\"；事实是：生活中不只有爱情）。"
+    ]},
+    {t:"3Ms：非理性思想的三个陷阱", l:[
+      "**Magnify 夸大**：夸大了已发生事实。过分归纳：\"期末没考好→我不够聪明、无法成功。\"把失败灾难化是阻止挑战自我的重要因素。",
+      "**Minimize 缩小/过度归纳**：狭隘视野，只看单次成败而忽略整体。例如一百个学生里只盯着那个考上清华北大的，就认定自己不行。",
+      "**Making up / Fabricating 伪装捏造**：过度自我责备或一味指责他人（\"全是我的错\"或\"全是他的错\"）；情绪化推断（\"我嫉妒了朋友，所以我是坏人\"）。"
+    ]},
+    {t:"认知疗法实操（3P）", l:[
+      "**Permission 许可**：允许自己为人，尊重现实，接受自己的情绪、困难和现实。",
+      "**Positive 积极**：积极乐观地阐释——重构、找到成长的机会、对事情的诠释、必要时分散注意力（\"我从中能学到什么？\"）。**分散注意力 ≠ 逃避**：逃避是\"不想解决\"，分散是\"接受现在解决不了，休整一下，等有能力再来，或换个角度\"。",
+      "**Perspective 转换**：换个角度，\"这件事一年之后还重要吗？\"（别为小事抓狂）"
+    ]},
+    {t:"逆境即机遇", l:[
+      "\"不要浪费任何一个好的危机。\"经历过考验的人更容易成功。",
+      "成功的领导者都经历过严峻考验，通过危机吸取教训和经验。",
+      "一切未必是最好的安排，但有人接受并充分利用现实。**Things happen，你可以任其肆虐，也可以化干戈为玉帛。**"
+    ]},
+    {t:"两类人", l:[
+      "**Fault-finder（自怨自艾者）**：永远关注不顺利的事，向现实屈服，没意识到自己是现实的创造者。",
+      "**Benefit-finder（知足常乐者）**：关注好的事，从平凡中发现不平凡（但要避免脱离现实的盲目乐观）。",
+      "\"现实就摆在眼前，但如何对待它，是我们自己的事。\""
+    ]}
+  ],
+  quote:[
+    {t:"心随境转，境由心生。",f:""},
+    {t:"不要浪费任何一个好的危机。",f:""},
+    {t:"To different minds the same world is a hell and a heaven.（爱默生）",f:""},
+    {t:"你无法选择遭遇，但可以选择如何解读遭遇。",f:""}
+  ]
+},
+{
+  no:8, theme:"观念篇", title:"感激",
+  key:[
+    "**感激是最大的美德，也是其他美德之源**（西塞罗）。",
+    "培养感恩习惯，不把好事习以为常——**感激好处，好处就会增值**。",
+    "每天写下值得感激的事情，会让人更快乐、更健康、更能达成目标。",
+    "表达感激是双赢，能产生\"上行螺旋\"。"
+  ],
+  deep:[
+    {t:"为什么感激", l:[
+      "感激时副交感神经作用加强，使人平静，增强免疫系统。",
+      "表达感激是双赢模式：会让对方也向他人感激，产生上行螺旋。",
+      "**当我们珍视美好事物时，会拥有更多美好；当我们无视/把美好视为理所当然时，就会失去它们。**"
+    ]},
+    {t:"如何培养感激之情（行动指南）", l:[
+      "**试着感受一天的生活**：全神贯注地做一两件平常小事（走路、开车、看书），练习直到成为习惯。",
+      "**写感恩笔记**：每天写下感激的事情，养成习惯。",
+      "**如何保持新鲜感**：",
+      "· 避免复制粘贴，加更多细节，从不同角度；",
+      "· 用心观察，观察以前没留心的事；",
+      "· **形象化**：以孩子的眼光看世界（孩子比成人敏感，成人已对习以为常的事物麻木）。",
+      "**感激要化为行动**，不要只停留在心里。"
+    ]},
+    {t:"关于媒体与消极", l:[
+      "媒体大量报道不幸、杀戮、恐怖（负面才有爆点），会扭曲我们看待世界的方式。要主动关注正面信息，避开媒体为博眼球的负面煽动。",
+      "良言一句三冬暖，恶语伤人六月寒。虚伪的珍视具有破坏力，发自肺腑的珍视才让人充满力量。"
+    ]}
+  ],
+  quote:[
+    {t:"感激不仅是最大的美德，也是其他美德之源。（西塞罗）",f:""},
+    {t:"If we appreciate the good, the good grows.（珍视美好，美好就会增长。）",f:""},
+    {t:"如果星星每千年闪烁一次，我们都会仰视赞美，但它们每天都在闪烁，所以我们视为理所当然。（爱默生）",f:""}
+  ]
+},
+{
+  no:9, theme:"方法篇", title:"积极情绪",
+  key:[
+    "积极的情绪是**唯一影响寿命的因素**——甚至让人更容易从疾病中活下来。",
+    "为什么那么多人没成为乐观主义者：媒体的负面轰炸 + 社会对\"太乐观\"的质疑。",
+    "变得更乐观：**创造美好的事情** + 培养感恩习惯。",
+    "对消极经历：**分析、书写、倾诉**（不要反复回想）；对积极经历：**反复回想、描述**（但不要过度分析）。"
+  ],
+  deep:[
+    {t:"媒体如何影响乐观", l:[
+      "媒体强调事情的某一方面，尤其消极面；\"政客都是骗子\"等印象多是媒体灌输。",
+      "我们的主观意识也更在意负面信息。要主动关注正面，避开负面煽动。"
+    ]},
+    {t:"对\"积极/消极经历\"的不同处理", l:[
+      "**消极经历**：写下/谈及并尝试分析，会感觉更好；光想（沉思）反而更不舒服。因为书写和倾诉让我们分析原因、产生共鸣。",
+      "**积极经历**：写下/谈及并尝试分析，反而感觉更差；光想反而更舒服。因为分析美好的经历得不到益处。",
+      "**结论**：对于感激的东西，要常常思考、回忆，但**不要分析**；对于不好的经历，要分享、分析、写进日记，**而不是回忆**。",
+      "每天抽时间关注周围发生的一切，每晚回想当天的经历，写下感激的事情。",
+      "一些患 PTSD（创伤后应激反应）的人，正因不断回忆痛苦经历、把它藏在心里从不与人提起；相反，经常回忆积极经历的人，心灵会得到治愈。"
+    ]},
+    {t:"大脑与情绪（生理基础）", l:[
+      "大脑左前额叶比右前额叶更活跃的人更容易快乐、更易受积极情绪影响、更易从痛苦中恢复（有研究：幸福的人左前额活动更频繁，不幸福的人右前额更频繁）。",
+      "情绪有对应的生理表现。字面上讲，**改变行为就是在改造大脑**。"
+    ]},
+    {t:"艺术与幸福", l:[
+      "艺术（音乐、电影、雕塑、美术）是幸福的重要来源，也是将美好一面表现出来的方式。"
+    ]}
+  ],
+  quote:[
+    {t:"积极的情绪是唯一影响寿命的因素。",f:""},
+    {t:"当你珍视美好时，你将拥有更多美好；无视时，你将会付出代价并失去它们。",f:""}
+  ]
+},
+{
+  no:10, theme:"方法篇", title:"如何去改变",
+  key:[
+    "**改变没有捷径**（No quick fix），没有改变是即时速成的，都经过精心准备。",
+    "**ABC 理论**：Affect（情感，接受）— Behavior（行为，选择行动）— Cognition（认知，重建）。",
+    "大脑有**神经可塑性**，一生都在生成神经元，直到死去。",
+    "改变的两种方式：**渐变**（专注冥想、习惯）和**激进**（跳出舒适区进入学习区）。",
+    "有时潜意识里并不想改变（幸福与懒惰挂钩）。"
+  ],
+  deep:[
+    {t:"你真的想改变吗？", l:[
+      "阻碍幸福的一大障碍：**潜意识把幸福与\"不经历苦难\"挂钩**，而潜意识又认为人需经历苦难磨练，于是并没有完全想要追求幸福。",
+      "想改变一个品性，先了解这个品性的特质；知道自己究竟想改变什么，才能\"取其精华，去其糟粕\"。",
+      "**潜意识中不想改变某些\"关联品性\"**：完美主义↔动力雄心，担忧焦虑↔责任感，精简化↔失去优势，古板↔言行一致，幸福↔偷懒。"
+    ]},
+    {t:"ABC 理论（改变的三通道）", l:[
+      "**Affect 情感/情绪**：情感无法直接改变，只能接受（强化高峰体验，提供情感动力）。渐变式：**专注冥想**——专注地感受情绪本身，不去试图改变它，可消除对烦闷情绪的反应。",
+      "**Behavior 行为/行动**：走出舒适区，做你害怕的事，害怕就会消失（行动改变态度）。行为改变是改变的最有效途径；大脑喜欢一致性，行为变了态度会随之调整。",
+      "**Cognition 认知/思维**：认识到脑中有些根深蒂固但未必正确的观念，重建理性和真实。**认知决定行为**：如何看待事物和世界，就会产生什么行为（双胞胎对糟糕家庭的两种解读，活出不同人生）。",
+      "三者结合才是有力的改变：精力要同时用于情感、行动和思维。"
+    ]},
+    {t:"幸福公式（幸福感决定因素）", l:[
+      "幸福水平 **50% 取决于基因**、**10% 取决于外部环境**、**40% 取决于受意识行为支配的部分（意向活动）**。",
+      "基因无法改变，环境难以改变，**我们能改变的是那40%**——改变我们的意识行为、看待世界的方式、关注点。这是最能产生变化的杠杆。"
+    ]},
+    {t:"神经可塑性", l:[
+      "神经元有可塑性，一生不断生成，直到我们死去。",
+      "大脑不喜欢\"不一致\"，会把行为与态度拉到同一水平；想象和实际对大脑来说很多时候是一样的。",
+      "大脑左前额叶比右前额叶更活跃的人更容易快乐、更易受积极情绪影响、更易从痛苦中恢复；情绪有对应的生理表现。字面上讲，**改变行为就是在改造大脑**。"
+    ]},
+    {t:"改变的两条路", l:[
+      "**渐变**：专注冥想——专注力就是\"看到事物的本来面目，但不尝试去改变它\"，可消除对烦闷情绪的反应，但不拒绝情绪本身。",
+      "**激进**：做不情愿的事，跳出舒适区，进入**学习区**（很少接触甚至未曾涉足的领域，可充分锻炼自我），而不是进入**恐慌区**。"
+    ]},
+    {t:"增加\"巅峰体验\"（peak experience）的几率", l:[
+      "允许自己为人的权利；专注当下、集中心智（如全身心享受音乐）。",
+      "有自己的目标，做自己认可、认为有意义的事。",
+      "增加\"重复巅峰体验\"的几率：",
+      "· **情景再现**（在脑中重演画面）；",
+      "· **记录下来**：描述而不分析（积极经历）；",
+      "· **采取行动**：立即行动改变，幸福基线上升。",
+      "态度影响行为，行为同样影响态度（大脑讨厌内外不一致）。快乐会让人笑，笑也会让人快乐；挺直腰板会让人更自信。",
+      "哪怕假装高兴也会影响心情——但可以接受自己的真实情绪，同时选择表现得得体或对自己最有利。"
+    ]},
+    {t:"第一步（行动前）", l:[
+      "我们至少要对优势与不足同样关注。",
+      "理想状态不只是\"没有消极感觉\"，还要充满积极的创造力。",
+      "赞扬别人长远来看坏处比好处多，需要知道**怎样正确地赞扬**（重过程而非天赋，见第15课）。"
+    ]}
+  ],
+  quote:[
+    {t:"No quick fix.（没有速成之法）",f:""},
+    {t:"我们先塑造习惯，然后习惯造就我们。",f:""},
+    {t:"行动改变态度，创造思想。",f:""}
+  ]
+},
+{
+  no:11, theme:"方法篇", title:"养成良好习惯",
+  key:[
+    "**自制力是有限的**，不会增多也不会减少；但对幸福而言，自制力本身并不重要（养成习惯后就不再需要自制力）。",
+    "**每30天内不要建立超过两项新的例行公事（习惯）**。",
+    "改变的健康方式：进入**学习区（拉伸区）**，每天拉伸一点点。",
+    "我们塑造习惯，习惯塑造我们。"
+  ],
+  deep:[
+    {t:"关于自律的\"好消息与坏消息\"", l:[
+      "坏消息：自律不能增加；好消息：自律对幸福并不重要。",
+      "我们都只有有限量的自律。很多人看似自制力强，其实只是把一件事变成了**习惯**（如洗漱不需要自制力每天做，锻炼却很难）。",
+      "**\"养成习惯需要定义严谨的行为模式，还要在特定时间付诸行动，并需要以深深扎根的价值观为驱动力。\"**"
+    ]},
+    {t:"三个区域（改变的健康方式）", l:[
+      "**恐慌区**：太难，需迫切改变时才进入。",
+      "**最佳不适区 / 拉伸区 / 学习区**：改变应在这里——做不太难也不太简单的事，每天拉伸一点点。",
+      "**舒适区**：太舒服，无成长。"
+    ]},
+    {t:"习惯养成要点", l:[
+      "习惯很难改变，所以需要时间：**用30天去改变/养成一个习惯，但不要在30天内养成太多习惯**（自制力有限）。",
+      "**逐步的改变好过雄心勃勃的失败**。用细微的成功累积成巨大的成功。",
+      "一开始设定目标时目标要可达到，能持续给自己鼓励，逐步接近胜利。",
+      "遇到困难时，把它当成一种挑战去尝试。",
+      "习惯一旦养成，就不再需要自制力——这就是为什么\"坚持晨跑、看书的人\"看似自律，其实是习惯在起作用。"
+    ]},
+    {t:"认知的力量", l:[
+      "把一个事件视为**威胁**还是**挑战/机遇**，会带来完全不同的心态。多数情况下，对一件事情的**诠释方法决定我们的感受**。",
+      "\"被了解比被认可更重要\"（在关系中，详见第19、21课）。",
+      "有时间休息，才有创造力（孵化）。"
+    ]}
+  ],
+  quote:[
+    {t:"我们培养习惯，而习惯将造就我们。",f:""},
+    {t:"逐步的改变好过雄心勃勃的失败。",f:""},
+    {t:"远离舒适区，当你感觉无助的时候，可能正处在健康的改变状态。",f:""}
+  ]
+},
+{
+  no:12, theme:"方法篇", title:"写日记",
+  key:[
+    "**长期写作可以直接、稳定地降低焦虑水平**。",
+    "把经历**串联成一个故事、赋予其意义**，能帮你面对过去。",
+    "心灵健康的源泉三要素：**可理解性、可管理性、意义感**（相干性 coherence）。",
+    "设定目标让人更成功、更快乐；**拥有目标本身带来幸福，而非实现目标**。"
+  ],
+  deep:[
+    {t:"写日记的实验", l:[
+      "详细写下自己最坏/最好的经历，尽力重现当时的感受、思想、情绪。结果相当一致：**患病频率降低、更幸福**。",
+      "为什么写日记有效：",
+      "· 重现会加深相应的神经系统通路；",
+      "· 压抑非自然现象（如愤怒、焦虑）会适得其反；",
+      "· 获益最大的人对消极情绪多用\"剖析和理解性表达\"（\"现在我明白了\"\"我意识到\"），把经历**串联成一个故事**，赋予意义，从而从容应对过往。人最容易记住故事，因为它是一个整体，而非孤立的片段。",
+      "写日记可降低焦虑水平：积极和焦虑的情绪像一条河流，若不开闸放水，情绪就会堆积压抑；只有开闸，积极和焦虑才能释放。写下幸福的高峰时刻时，相当于重新回忆幸福，让河流变宽。",
+      "**日记的 ABC 写法**：写下发生了什么事情（事件）、产生了什么情绪（情绪）、如何去理解这个情绪和事件（认知），三者结合，形成完整的自我梳理。"
+    ]},
+    {t:"心灵健康三要素（安东诺维斯基·相干性 coherence）", l:[
+      "**可理解性**：我可以理解这些事情，说得通；",
+      "**可管理性**：我可以搞定、可以应对；",
+      "**意义感**：失败有其意义，争吵有存在的意义，我们可从中学习。",
+      "通过写日记，我们体会到：我理解了、我能处理应对、这件事是有意义的。"
+    ]},
+    {t:"关于基因与改变", l:[
+      "基因无法改变，不要抱有\"我要完全改变\"的想法；接受这个事实，然后逐步改变并享受其中。",
+      "我们像雕刻一样刻画人生，把多余的石头凿掉——这是心理科学的最终目标。"
+    ]},
+    {t:"设定目标（设定目标的重要性）", l:[
+      "设定一个有意义的、自我和谐的目标，更容易完成；当我们全身心投入时，\"世界仿佛都在帮你\"。",
+      "**达成目标本身不会带来幸福感的长久增加**：持久的幸福并非源自目标达成，而是追求目标的过程、其中赋予的意义。",
+      "人们单纯追求\"完成目标的结果\"，完成后会空虚、自暴自弃（如明星吸毒、考完大学崩溃）——因为达成目标带来的兴奋很快回到幸福基线，随之而来的是\"然后呢？\"的迷茫。",
+      "幸福不取决于财产和成就，取决于**心智状态、我们怎么看自己**。",
+      "目标实际起到\"方法\"的作用：**目标是通往终点（当下体验）的方法**，它创造你可以充分享受、专注当下的途径。",
+      "为自己设定目标，哪怕三天一换，只要认可并全身心投入就重要。"
+    ]},
+    {t:"自我和谐的目标", l:[
+      "追求自我和谐、自洽的目标（与自己的兴趣、价值观、在乎的东西相融合）。",
+      "有时需要延迟满足，但危险在于把整个人生都耗费在\"延迟满足\"状态。**Carpe diem（seize the day，活在当下）**。"
+    ]},
+    {t:"改变的三区域（重述）", l:[
+      "挑出舒适区，进入学习区，避免恐慌区（除非需要迫切改变）。",
+      "自制力有限，习惯需要30天、特定时间、扎根的价值观驱动。"
+    ]}
+  ],
+  quote:[
+    {t:"长期写作可以直接稳定地降低焦虑水平。",f:""},
+    {t:"When we have a 'what for', every 'how' becomes possible.（当我们有了\"为什么\"，一切\"怎么做\"都成为可能。）",f:"尼采"},
+    {t:"拥有目标让人幸福，而不是实现目标让人幸福。",f:""},
+    {t:"目标让我们解放，然后享受当下。",f:""}
+  ]
+},
+{
+  no:13, theme:"方法篇", title:"面对压力",
+  key:[
+    "**压力不是问题，问题是没有时间恢复（休整）**。",
+    "工作有三种：**工作 / 职业 / 使命**——选择权在你。",
+    "把生活从\"马拉松选手\"调整为\"**短跑冲刺选手**\"：冲刺—休整—冲刺—休整。",
+    "做到**多层次休整**：短期、中期、长期。"
+  ],
+  deep:[
+    {t:"压力与休整", l:[
+      "适当的压力是积极的；不积极的是压力带来的\"不休息、持续运作\"。",
+      "**能对抗压力的人，不是感受不到压力，而是非常注重休整。**",
+      "《精力管理》：把日常从\"马拉松选手\"转变为\"短跑选手\"，从\"一直坚持\"变为\"冲刺—休息—冲刺—休息\"（间歇性训练）。",
+      "具体：用 60–120 分钟冲刺（全神贯注工作），用至少 15 分钟休整。",
+      "例：90分钟学习→至少15分钟散步听音乐；90分钟学习→吃午饭；90分钟学习→练舞；90分钟学习→晚饭健身。保持灵活性。"
+    ]},
+    {t:"多层次休整", l:[
+      "**低层次**：吃饭、锻炼、听歌、练舞（工作中的短 Break）。",
+      "**中层次**：睡眠（对健康、幸福、创造力、记忆力的投资），每周至少休息一天。",
+      "**高层次**：假期（Recreation leads creation）。"
+    ]},
+    {t:"工作：工作 / 职业 / 使命", l:[
+      "所有工作可分为三种，动力分别对应：**工资**（工作）、**薪酬和晋升**（职业）、**工作本身**（使命）。",
+      "当我们有权选择、做自己想做的事，就更成功、更幸福、更健康长寿。",
+      "最好的工作是听从自己内心的工作，有助于实现自我和谐，这样才是真正地活着。"
+    ]},
+    {t:"目标与优势（Values in Action, VIA）", l:[
+      "**VIA 性格优势测试**：测出自己前五性格优势，思考致力于哪些时最能感到动力/成长；选一个优势接下来一周运用，下周换下一个；每天总结如何应用。",
+      "找到一个想解决的问题，思考如何运用性格优势去解决。",
+      "把工作使命化、认可工作的意义，无论干什么内心都会充实。",
+      "将目标写下来、确立最终日期、具体化；长远目标细分成小目标，制定计划，逐步养成习惯。",
+      "在所有优势中我们都具备其中几点，但有内在倾向（由基因或早期经历决定）。不应盲目培养所有优势，而应把精力集中于对我们最本能性的优势（最划算）。运用自身优势时成长最多、进步最多、学习最多。",
+      "**24 项性格优势清单（VIA）**：幽默和俏皮 / 欣赏美丽和卓越 / 公平公正和正义 / 谦虚和谦卑 / 希望、乐观和面对未来 / 诚实、真实 / 社交智能 / 灵性、目的感和信仰 / 创造力、独创性 / 对世界的好奇心和兴趣 / 谨慎、审慎 / 自我控制和自我调节 / 判断力、批判性思维和开放性 / 善良和慷慨 / 透视智慧 / 热情、精力充沛 / 公民身份、团队合作和忠诚 / 热爱学习 / 勤奋、坚韧 / 宽恕和怜悯 / 爱和被爱的能力 / 勇敢 / 感恩 / 领导力。",
+      "你的命运/使命是什么？倾听内心真实的声音。甘地：\"欲变世界，先变其身。\"不要只关注靠什么生存，而思考失去了什么我们将无法生存。"
+    ]},
+    {t:"高压下依然成功且快乐的人的特点", l:[
+      "为自己设定了一些**仪式（习惯）**；",
+      "同时设置了**工作和休整的仪式**。"
+    ]}
+  ],
+  quote:[
+    {t:"压力不是问题，问题是没有时间恢复。",f:""},
+    {t:"Recreation leads creation.（休整带来创造。）",f:""},
+    {t:"工作、职业、使命——选择权在你。",f:""}
+  ]
+},
+{
+  no:14, theme:"行动篇", title:"过犹不及（拖延）",
+  key:[
+    "**过犹不及**：做事情的数量可能会影响质量；过度和过少都不好。",
+    "**时间富裕比物质富裕更让人感到幸福**。",
+    "克服拖延：**\"五分钟起飞\"（Just Do It）**。",
+    "拖延者以为要有激励、有灵感才能行动，其实**行动创造思想、行动改变态度**。"
+  ],
+  deep:[
+    {t:"过犹不及", l:[
+      "达到\"最佳的简化\"；过度简化和过多任务量都会造成负面影响。",
+      "我们不是要无压力的生活、不发挥才能的生活、不鞭策自己的生活；而是要保证不断前进时，消耗的能量能在休息后补足。",
+      "每个人有自己的最适工作量——做得太多或太少都不快乐。",
+      "我们不需要先改变态度、做好心理准备再行动，**通常应反其道而行之：先付诸行动，态度随之改变。**"
+    ]},
+    {t:"克服拖延的办法（行动指南）", l:[
+      "**五分钟起飞**：忽略态度和情绪，先着手干5分钟（Just Do It）。",
+      "**公布自己的计划**：立 flag，破釜沉舟，告诉他人自己的目标。",
+      "**团队合作、互相督促**、写任务单（目标、计划与清单）。",
+      "**允许自己休息**、娱乐消遣、小小拖延一下。",
+      "**奖励自己**：在做成的时候奖励，好过在刚开始时激励。",
+      "思考：一天中哪些事耽误了我真正要做的事，怎么减少？哪些事需要我全神贯注地去做，怎么做到？"
+    ]},
+    {t:"关于失败的勇气", l:[
+      "放手去做，允许自己失败。**那些最终成功的人，往往也是失败次数最多的人。**",
+      "完美主义者（见第15课）不敢尝试，因为\"不尝试就不会失败\"，但缺乏行动的结果是更低的自尊。"
+    ]},
+    {t:"团队与心理安全感", l:[
+      "团队成功率提升的要点：共同目标、结构合理、好的后台支持、有效的教导，更重要的是**心理安全感**——能在团队面前谈及自己的错误，才是学习型组织。",
+      "父母要给孩子安全感，让他们不怕告诉你他们做得不好，这样他们就不容易成为完美主义者。",
+      "IBM 故事：员工让公司损失一百万，创始人说\"我刚为你的教育投入了一百万，为什么要开除你？你再犯同样的错误，我就开除你。\""
+    ]}
+  ],
+  quote:[
+    {t:"过犹不及。",f:""},
+    {t:"时间富裕比物质富裕更让人感到幸福。",f:""},
+    {t:"五分钟起飞——不要等待，就着手去做。",f:""},
+    {t:"那些最终成功的人，往往也是失败次数最多的人。",f:""}
+  ]
+},
+{
+  no:15, theme:"行动篇", title:"完美主义",
+  key:[
+    "**完美主义**：对失败的一种**失能性恐惧**，尤其是对我们最在意的方面。",
+    "完美主义 vs 追求卓越（perfectionism vs optimalism）：一个怕批评、怕失败，一个享受过程、开阔心胸。",
+    "生活是从 A 到 B 的**螺旋式前进**，而完美主义者只能接受直线。",
+    "克服完美主义：**嘉奖过程**（而非只嘉奖结果）、自我认知、积极接受、行动。"
+  ],
+  deep:[
+    {t:"完美主义的定义", l:[
+      "Tal 的定义：\"An incapacitating fear of failure that permeates our lives, especially those areas that we care about most.\"（一种弥漫我们生活、尤其在最在意领域的失能性失败恐惧。）",
+      "所有成功的人都经历过至少一次重大失败；不是最好的事发生在他们身上，而是**他们能最大程度地利用已成现实的事**。"
+    ]},
+    {t:"完美主义者 vs 追求卓越者", l:[
+      "对失败：完美主义者失能性恐惧、怕自己/别人视自己为失败者；追求卓越者厌恶失败但不恐惧，把失败当反馈和成长机遇。",
+      "对批评：完美主义者心理防御、不接受批评；追求卓越者接受批评，视其为成长的一步。",
+      "关注点：完美主义者过度关注失败、没做到的事；追求卓越者关注成功、享受过程。",
+      "心态：完美主义者要么完美、要么完败；追求卓越者接受现实、接受不完美。",
+      "路径：完美主义者只接受 A→B 直线、无休整；追求卓越者明白是螺旋式上升、注重休整。",
+      "驱动：完美主义者目标焦虑驱动；追求卓越者热爱驱动。",
+      "长期结果：完美主义者更易挫败、低自尊；追求卓越者精神上更幸福、物质上更平衡、更成功。",
+      "完美主义形成与\"**只有结果受到嘉奖**\"有关；Be good type 会输给 be better type。"
+    ]},
+    {t:"完美主义的三个伤害自尊的原因", l:[
+      "自尊的第一个基础是自我接受，而完美主义者不接受自我。",
+      "完美主义者总遇到长期且不可避免的失败（因为根本没有完美的人），不断失败贬低自尊。",
+      "完美主义者害怕尝试（不尝试就不失败），缺乏行动导致更低自尊。"
+    ]},
+    {t:"如何克服完美主义（四步）", l:[
+      "**自我认知**：清楚认识到自己想要改变什么、保留什么（取其精华去其糟粕，保留野心与动力）。",
+      "**肯定付出**：强调努力的重要性，奖励过程；改变思维，明白**过程和努力 > 结果和天赋**。",
+      "**积极接受**：接受自己会受完美主义影响，而不是要成为\"完美的追求卓越者\"。",
+      "**行动**：设立一个终极（长久）目标以解放自己——\"将来一定会到达，现在都是准备过程\"。享受当下，而不是执着于永无止境的完美生活。"
+    ]},
+    {t:"关键：赞美努力 vs 赞美天赋（Carol Dweck）", l:[
+      "\"你真聪明\" → \"你真努力\"：**强调努力**让孩子拥有自己能掌握的变量，产生对成功的掌控感；**强调天赋**剥夺孩子对成功的控制，也不提供面对失败的策略。",
+      "只夸聪明，孩子失败后会认为是自己不够聪明、失去兴趣；夸努力认真，孩子面对困难不受挫、热情高涨。",
+      "只针对结果和天赋的赞美/贬低，长期会让孩子形成完美主义思维（\"只有完美才配得赞美，达不到就一文不值\"），拿走了挑战的动力。",
+      "**铂金法则**：欲施于人，亦施于己。对别人宽容，对自己也别过于苛刻。"
+    ]},
+    {t:"其他要点", l:[
+      "心理成熟 = 根据自己意愿主动转换看待事物角度的能力（willingly shift perspective）。",
+      "80/20 法则：80%的工作量可用20%的时间完成；找到生物节律，用短时间搞定大部分工作。",
+      "心流：我们感觉最良好、表现最出色的时候，出现在最兴奋、最自信时。",
+      "关于写不出终极作品的忧虑：\"我会在生命终点创造出最好的作品，在此之前都不过是草稿。\""
+    ]}
+  ],
+  quote:[
+    {t:"完美主义是对失败的失能性恐惧，尤其是对我们在意的方面。",f:""},
+    {t:"生活是从 A 到 B 的螺旋式前进，而完美主义者只能接受直线。",f:""},
+    {t:"想提高成功率，先提高失败率。",f:""},
+    {t:"Be good type 会输给 be better type。",f:""}
+  ]
+},
+{
+  no:16, theme:"行动篇", title:"享受过程",
+  key:[
+    "**身心的\"神奇配方\"**：每周运动4次×30分钟、每周冥想6-7次×15分钟、每天睡眠8小时、每天12个拥抱。",
+    "锻炼是**投资**，是最不应该撤走的；跑步锻炼有利于形成新的神经通路。",
+    "从失败中挖掘闪光点，失败是成长的学费。",
+    "不要把完美主义用在别人身上。"
+  ],
+  deep:[
+    {t:"身心连接（Mind-Body）", l:[
+      "我们的身体和心理密切相连，如何让二者互相帮助、形成良性循环？",
+      "这就是\"灵药\"（wonder drug）：运动 + 冥想 + 睡眠 + 拥抱。",
+      "心理成熟 = 主动转换看待事物角度的能力：既能沉浸在当下，也愿意在时间空间上退一步、从外部重新审视。这种来回切换的灵活度能打开眼光。"
+    ]},
+    {t:"运动的巨大价值", l:[
+      "锻炼提高自尊（身体层面+总体层面）、对治疗焦虑和压力有效；跑步锻炼形成新的神经通路，锻炼后能更好地吸收所阅读的东西。",
+      "每周3-4次、每次30分钟的有氧运动对心理作用最好；肌肉运动无法替代有氧（但年龄越大，肌肉运动对健康的效果越增加）。",
+      "运动是投资，最不应该撤走。增加体能训练能显著提高学习成绩、减少打架斗殴和纪律问题。",
+      "**过多运动和过少运动都会造成负面影响，很多甚至是相同的**——重点是听从身体，宁少不多。",
+      "最大心率 = 220 - 年龄，平常锻炼心率应在最大心率的70%。",
+      "运动后恢复非常重要（1967年马拉松运动员受伤停训一个月后复训并破纪录）。"
+    ]},
+    {t:"如何养成锻炼习惯", l:[
+      "不要让大脑认为\"锻炼=痛苦\"。",
+      "循序渐进，宁少不多；找到可以分心的东西；人际支持（和别人一起，对大多数人有效）。"
+    ]},
+    {t:"追求卓越而非完美（衔接第15课）", l:[
+      "区别完美主义和卓越主义的点：努力过程中，是**享受过程**，还是**为了结果咬牙坚持**。",
+      "放弃完美主义不是放弃追求和野心，而是改变对失败的态度。成功的人平均经历过5次失败。",
+      "接受\"困难存在并且可能不容易解决\"，不要用完美主义要求别人——完美主义是阻止我们帮助他人的最大障碍之一。"
+    ]}
+  ],
+  quote:[
+    {t:"锻炼是一种投资，是最不应该撤走的。",f:""},
+    {t:"失败是成长的学费。",f:""},
+    {t:"30分钟锻炼×每周4次，15分钟冥想×每周6-7次，8小时睡眠×每天，12个拥抱×每天。",f:""}
+  ]
+},
+{
+  no:17, theme:"行动篇", title:"运动与冥想",
+  key:[
+    "**运动+冥想 = 无副作用的合法\"灵药\"**。",
+    "冥想：专注于一件事（呼吸、动作、意念），**没有目的，不要强迫自己**。",
+    "冥想者的惊跳反射更少、更宁静；**深呼吸是唯一共同点**。",
+    "察觉情绪时，观察身体反应并接受它，不要想着消除它。"
+  ],
+  deep:[
+    {t:"锻炼实验（抗抑郁）", l:[
+      "对100多抑郁症病人持续4个月分组：锻炼组、配药组、锻炼+配药组。四个月后三组均有约60%痊愈（纯锻炼组前一个月稍慢，之后一致）。",
+      "痊愈后6个月追踪：60%好转者中，综合组31%复发，锻炼组仅9%复发——**锻炼的长期效果更好**。",
+      "目的不是说不需要用药，而是看看缺乏锻炼是否是抑郁的内在原因；有些人只有吃药、有些人只有锻炼、有些人两者都有效。"
+    ]},
+    {t:"坚持运动的好处", l:[
+      "自尊（身体层面+总体）；焦虑压力降低；健康（糖尿病、心衰、癌症等降低）；免疫增强；性欲改善。",
+      "每周3-4次、每次30分钟以上；无氧配合有氧，年龄越大越好；有氧性价比最高；多种运动形式。"
+    ]},
+    {t:"阻碍运动的三个因素", l:[
+      "刚开始身体累 → 坚持+充分休息；",
+      "没时间 → 最不该放弃的就是运动，这是投资，让运动形成规律；克服时间不足的方法：**不要依赖自律性**（自律能力有限），要形成自己的规律（习惯）。",
+      "**潜意识障碍（无意识障碍）**：潜意识觉得自己\"不值得、不配\"幸福，运动时自己比潜意识认为的更幸福，大脑觉得不一致就想停止 → **干就完了（Just do it）**。",
+      "**自我认证理论（Bill Swann）**：意识中有强大的自我提升意识，希望自己在别人眼中、自己眼中表现好；但也存在反作用力——**如果我们认为自己不值得幸福，就会鲜少做让我们幸福的事**。在恋爱中，若认为自己不值得拥有幸福恋情，潜意识会破坏这段恋情、积极寻找问题。",
+      "对策：1）放开手去做运动，形成自我规律，不要做太多分析；2）认知层面：认识到锻炼的重要性——**运动是心理治疗中的无名英雄**，锻炼让负面情绪有地方发泄，冲动行为减少。",
+      "幸福革命的基础与运动革命相关：强调运动的学校，学生成绩提升、健康显著提高、打架斗殴现象完全消失。"
+    ]},
+    {t:"冥想", l:[
+      "冥想（太极、瑜伽、气功、静坐）的共同特点：**专注于一件事**（呼吸、动作、意念）。",
+      "**冥想没有目的，不要强迫自己**；觉悟不是冥想的目的，而是\"此时此刻集中注意力\"。",
+      "冥想让冥想者比普通人更宁静；仅仅8周45分钟冥想，心理免疫系统、快乐指数、焦躁程度都明显改善。",
+      "深呼吸（腹式呼吸）是唯一共同点。即使不能每天冥想，**每天三次深呼吸也能改变心理状态**。",
+      "惊跳反射可视为焦虑程度体现；军队射手也无法完全抑制惊跳反射，但冥想者可以。",
+      "有技巧地在生活中进行三次深呼吸，腹式呼吸。"
+    ]},
+    {t:"察觉与接受情绪", l:[
+      "感受情绪时，马上察觉身体哪部分有反应，**接受它，不要想消除它**，避免走以前的神经通路（身体扫描）。",
+      "想要干预/压制情绪，通常有反作用；把注意力从\"修复\"转移到\"与情绪融合\"。",
+      "对同一情形反复冥思苦想，常使情况更糟——不如去体验、正视情绪。",
+      "苦苦思索是问题的症结之一，不是解决办法。观察它、接受它，并建立新的认知习惯；身体有自我疗愈功能。"
+    ]}
+  ],
+  quote:[
+    {t:"运动+冥想，是无副作用的合法'灵药'。",f:""},
+    {t:"冥想没有任何目的，没有什么要求。",f:""},
+    {t:"干就完了。（Just do it.）",f:""},
+    {t:"我们习惯了分析和解决问题，而我们体内有它的智慧，会帮助我们自愈。",f:""}
+  ]
+},
+{
+  no:18, theme:"关系与自我篇", title:"睡眠、触摸和爱情的重要性",
+  key:[
+    "**睡眠应被看作投资，而非浪费时间**。",
+    "每天约8小时睡眠；睡眠能解决白天未解决的问题。",
+    "触摸（拥抱）是一种天生本能，对身心有疗愈作用；每天至少5-12个拥抱。",
+    "关系的亲密（touch）与爱情相关；完美的爱情不存在，但真爱存在。"
+  ],
+  deep:[
+    {t:"睡眠是投资", l:[
+      "现代生活节奏快，睡眠常是我们最先牺牲的。但**睡眠应被视为投资**：对免疫系统、精力水平、体重管理、创造力、生产力、记忆力都重要。",
+      "缺乏睡眠 → 抑郁（睡眠是生理需要，心理也需要睡觉）；认知能力因缺睡眠受损；睡少也易致体重超标。",
+      "睡眠能解决白天未解决的问题。",
+      "睡前不要吃太多、不要锻炼太晚；困难时期偶尔入睡困难是正常的。",
+      "适度多睡更好；产后抑郁部分因为照顾新生儿休息不好。"
+    ]},
+    {t:"触摸与拥抱", l:[
+      "触摸是一种天生本能；友好身体接触是安全感的来源。",
+      "按摩/触摸对人非常好，甚至可以治愈某些性功能障碍、改良性生活。",
+      "每天至少5-12个拥抱。"
+    ]},
+    {t:"内向/外向", l:[
+      "内向的人天生拥有较高\"兴奋量\"，因此更享受独处；酒精降低兴奋量，咖啡提高兴奋量。内向者比外向者激励水平更高（高于最优水平）。",
+      "做与自己本性相反的事都需要恢复精力——**首先接受本性**。"
+    ]},
+    {t:"爱情", l:[
+      "即使和最理想的爱人结婚，五年后你可能开始觉得新的伴侣更吸引人——**新颖的东西令人兴奋，激情会慢慢退散**。",
+      "关系需要努力经营；最好的关系不是不会发生矛盾。",
+      "没有完美的爱情，期望完美的爱情会导致失败；**完美的爱情不存在，但真爱存在（存在于不完美的人身上）**。"
+    ]}
+  ],
+  quote:[
+    {t:"睡眠是一种投资，不是对时间的消耗。",f:""},
+    {t:"平均睡八个小时。",f:""},
+    {t:"每天至少12个拥抱。",f:""},
+    {t:"完美的爱情不存在，但真爱存在。",f:""}
+  ]
+},
+{
+  no:19, theme:"关系与自我篇", title:"如何让爱情天长地久",
+  key:[
+    "**寻找心态 vs 培养心态**：找到\"对的人\"很重要，但**培养这段感情更重要**。",
+    "**被了解 > 被认可**：从\"想要被认可\"转变为\"想要被了解\"。",
+    "**允许冲突**：恋情都有冲突，完全吵架和从不吵架都不好。",
+    "**主动、建设性地回应积极事件**，能预测感情能否长久。"
+  ],
+  deep:[
+    {t:"寻找 vs 培养", l:[
+      "电影大多止于\"找到真命天子\"（寻找心态）；但爱情才刚开始，电影就结束了。当真命天子出现、生理本能平静、意识到对方并不完美时，**这才是真爱得以培养的时候**。",
+      "真命天子并不只有一个；让恋情独特的不是找到谁，而是**与选择的恋人共同培养感情、彼此奉献、互相努力**。",
+      "感情没有\"完成\"一说，没有成功终点，只有过程、只有延续。"
+    ]},
+    {t:"维持感情的途径", l:[
+      "**每周起码聚餐一次以上**，为爱情建立\"惯例\"（为那些重要而不紧急的事）。",
+      "**从\"想要被认可\"转变为\"想要被了解\"**：",
+      "· 被认可=取悦别人（压力大）；被理解=表达自己。",
+      "· 坦诚风险高、无法保证，但抑制自己绝对会失败。真诚正直的人会吸引人（爱情、友情、领导力皆然）。",
+      "· 伪装成别人而获得喜爱，对方爱的是你塑造的面具，假象早晚会被打破。",
+      "· 坦露的不一定是缺点，也可以是没被发现的优点。",
+      "· 当你坦诚时可能难受；如果很舒服，说明你在说\"让对方认可的话\"。但从长远看，被了解能助长感情。",
+      "**彼此信任、加深坦露、敞开心扉**，建立更深层亲密关系。",
+      "**允许争执的存在**：",
+      "· 研究发现平均每5次积极交流就有1次争执。",
+      "· 争执时：\"到底为什么出现问题\"→\"这很正常，想想如何解决\"。不等于享受争执，而是明白这是正常的。",
+      "· 与其减少争执元素，不如**增强巩固积极元素**。",
+      "· 关注行为而不是人（《非暴力沟通》）：用批评提出主张，对方会申辩反击；直接说出需要，对方更可能积极回应。",
+      "· 例：\"你太糊涂了\"（人身攻击）→\"你本应丢垃圾（需求），现在回到家看到很脏（现状），我很不高兴（感受），能否请你把垃圾丢掉（请求）？\"",
+      "· **私下处理，不在公开场合争论**；不想对泛泛之交做的，勿施于亲朋好友。"
+    ]},
+    {t:"爱情的细节与仪式", l:[
+      "爱情不是各种美好闪光点，而是**细节、日常生活的点滴**：仪式感、重要日子、出门/回家细节。",
+      "分享（好坏事情都主动分享）；关爱对方、询问感受、关注情绪；主动赞美对方（赞美是免费的，长期无价）；性，是抽象情感的具象化。"
+    ]},
+    {t:"积极回应（预测爱情长久的关键）", l:[
+      "伴侣是否常有**主动、建设性的积极回应**，是预测能否天长地久的关键。",
+      "四种回应类型：",
+      "· 被动破坏性：无视、转移话题；",
+      "· 主动破坏性：消极回应；",
+      "· 被动建设性：\"太好了，哇塞\"；",
+      "· **主动建设性**：\"太棒了，告诉我细节，我们怎么庆祝一下？\"（真诚、共情、双赢）",
+      "主动建设性回应延长幸福感、构建积极能力，面对困难时也有帮助。"
+    ]},
+    {t:"积极幻觉 / 优点创造者", l:[
+      "对彼此评价比朋友家人评价更高的情侣，最能经受考验（积极幻觉）。",
+      "爱情不仅能感知潜能，还能激发潜能；专注优点而非不顺利之处。",
+      "我们要成为主动寻找积极面的人，更要成为**创造积极的人**。"
+    ]},
+    {t:"冲突（接触假说）", l:[
+      "仅仅让冲突双方接触会激化矛盾；还需确立一个**共同目标**，让双方共同努力、合作、彼此支持，才能解决问题甚至加深关系。",
+      "不仅一起生活，还支持彼此的愿望与抱负，为生活融入共同目标（\"我\"变成\"我们\"）。",
+      "主动爱情：感情很多不是天生就有（尤其男性对孩子的爱）；可以等感情出现，也可以**主动表达爱**。自我知觉理论：我们的行动决定态度；不在恋情付出，会觉得恋情不重要。**如果没有主动的爱，爱将无法支持，仪式感很重要。**"
+    ]}
+  ],
+  quote:[
+    {t:"被了解，比被认可更重要。",f:""},
+    {t:"找到真命天子很重要，但培养感情更重要。",f:""},
+    {t:"God is in the details.（上帝在细节之中。）",f:""},
+    {t:"我们越独立，就越相互依赖。",f:""}
+  ]
+},
+{
+  no:20, theme:"关系与自我篇", title:"幸福与幽默",
+  key:[
+    "幽默是看待世界的一种方式，**可以培养**。",
+    "幽默的好处：缓解压力、增强免疫、提高抗痛能力、代表认知能力良好、甚至降低癌症发病率。",
+    "提升幽默的方法：写日记记趣事、自嘲自黑、打破固有模式、问\"我为什么这么有趣\"。"
+  ],
+  deep:[
+    {t:"幽默的生理与心理益处", l:[
+      "大笑时血压降低、血流量增大，15块面部肌肉运动；大笑15分钟可燃烧掉中块巧克力，有时比运动15分钟还有效。",
+      "困难时期笑一笑可有效减轻压力；幽默能提高抗痛能力（且时间延迟后仍有效）；甚至能降低癌症发病率。",
+      "幽默可使人更积极，意识到生活有很多改变的可能；增强免疫力、减少皮质醇、减少压力损害、提高忍痛度、延长癌症存活时间。",
+      "幽默代表认知能力良好。",
+      "镜像神经元：有人对你笑，你也会对他笑（感同身受）。女人笑的次数与喜欢男人/被男人喜欢的程度成正比。"
+    ]},
+    {t:"如何提升幽默（行动指南）", l:[
+      "**写日记**记录身边有趣的事、积极的事，然后改变它的形态，努力使它变得幽默有趣。",
+      "问自己两个问题：\"我为什么这么有趣？\"\"为什么别人没发现我的幽默？\"（记录独特的事、观察有趣的人）",
+      "**自嘲自黑**，允许自己暂时为\"次等人\"。",
+      "**多样性**，打破固有模式，让生活中有新鲜事。"
+    ]}
+  ],
+  quote:[
+    {t:"幽默是一种自我实现的方式，是一种冲动的抒发。",f:""},
+    {t:"经历过人生起伏还能笑对生活的人，内心是真正的强大。",f:""},
+    {t:"幽默代表认知能力良好。",f:""}
+  ]
+},
+{
+  no:21, theme:"关系与自我篇", title:"爱情与自尊",
+  key:[
+    "**爱情的四大观念**：① 努力经营 > 寻找对的人；② 被了解 > 被认可，敢于袒露缺点；③ 允许吵架、处理冲突；④ 积极感知、创造优点。",
+    "**自尊的定义**：一种认为自己有能力应对生活基本挑战、并认为自己值得拥有幸福的倾向。",
+    "**高自尊的好处**：心理更健康、更坚韧、提升关系、决定高情商、更容易幸福。",
+    "**六个提高自尊的练习**：诚实、自我意识、有目标、承担责任、自我接纳、自信。",
+    "自我概念就是自我命运，信念就是自我实现的预言。"
+  ],
+  deep:[
+    {t:"爱情四大观念（复习+深化）", l:[
+      "爱情需要努力经营，更甚于寻找对的人。",
+      "努力被了解而不是被认可，表现自己而不是掩饰，敢于袒露缺点。",
+      "允许吵架，学会处理冲突（关注行为不攻击人，私下解决）。",
+      "积极感知，创造优点。",
+      "友情也一样：真正的友情不是一个凡事赞同你的人，而是一个**\"美丽的敌人\"**（能挑战你、敦促你、帮你寻求真相的人）。"
+    ]},
+    {t:"自尊是什么", l:[
+      "自尊：个人对自己所保持的态度中所表现出的个人价值评判（我对我自己的态度）。",
+      "学术定义：\"一种认为自己**有能力应对**生活基本挑战，并认为**值得**拥有幸福的倾向。\"",
+      "**无法客观测量自尊**。没有哪个评判比我们对自己的评判更重要；人可能犯下的最大罪恶就是瞧不起自己。",
+      "自尊不是空洞心理强化能产生的，也不依赖别人表扬；**自尊存在于现实中、基于实际表现和实际练习，是努力的产物**。",
+      "自恋通常表现得像高自尊，但自尊是基于现实的，要区分\"自尊\"与\"伪自尊/脱离现实的自恋\"。"
+    ]},
+    {t:"高自尊的好处", l:[
+      "心理健康、更坚韧、适应性更强、面对困难有勇气；",
+      "提升情感关系；",
+      "高自尊决定高情商（自省智商 + 人际交往智商）；",
+      "更容易幸福（自尊心与幸福相关比约0.6）。"
+    ]},
+    {t:"自尊与焦虑", l:[
+      "低自尊常和焦虑有关；不健康的焦虑是无来由的、莫名其妙地不认可自己。",
+      "高自尊追逐幸福，低自尊逃避不幸福。"
+    ]},
+    {t:"六个提高自尊的练习", l:[
+      "**诚实 / 正直**：言行一致，说到做到，包括不欺骗自己（\"我的话很重要，可以信赖\"）。",
+      "**自我意识 / 自我觉察**：了解自己、接受自己（\"我的价值不需要通过赞扬证明\"）。",
+      "**有目标 / 追随内心**：努力追求有目标、有使命的生活，追随来自内心的目标。",
+      "**承担责任**：承认自己在某方面有不可替代性，自己创造生活。**自尊支柱的支柱是承担责任——No one is coming。**",
+      "**自我接纳**：允许自己为人，接纳自己的不完美。",
+      "**自信 / 有主见**：该说不就说不、该说是就说是，坚持信仰，支持自己相信的东西。"
+    ]},
+    {t:"自尊的三种类型（第21-22课核心）", l:[
+      "**依赖型自尊**：与别人比较，依赖于别人的评价（别人夸奖才有）。",
+      "**独立型自尊**：不与别人比较，与自己比较（自己生成）。",
+      "**无条件自尊**：不在乎别人评价，甚至自己都不评价自己（自然的）。",
+      "每个人都有一定程度的三种自尊，重要是依赖程度多少。"
+    ]}
+  ],
+  quote:[
+    {t:"自我概念就是自我命运，自我信念就是自我实现的预言。",f:""},
+    {t:"自尊是一种认为自己有能力应对生活基本挑战、并值得拥有幸福的倾向。",f:""},
+    {t:"自尊存在于真实的行动、真实的成功和实践中，它是努力的产物。",f:""},
+    {t:"我寻找的是一个美丽的敌人，一个能挑战我、敦促我、帮助我寻求真相的人。",f:""}
+  ]
+},
+{
+  no:22, theme:"关系与自我篇", title:"自尊与自我实现",
+  key:[
+    "**三种自尊是渐进式模型**：依赖型 → 独立型 → 无条件自尊，所有人都不同程度地拥有。",
+    "培养独立自尊：多问问题、探索内心、对自我的存在感激。",
+    "**\"无名咒语\"练习**：想象没人知道你在做什么的世界，你会怎么做？——帮你发现真正想要的东西。",
+    "自我实现能滋养自尊，被自我实现滋养的独立自尊又反过来促进自我实现（正向循环）。"
+  ],
+  deep:[
+    {t:"三种自尊的渐进式模型", l:[
+      "依赖型 → 独立型 → 无条件自尊，是渐进过程，所有人都不同程度地拥有三种。",
+      "转变需要时间；即使实现无条件自尊的人，也会有依赖和独立自尊的残留，只是逐渐丧失支配权。",
+      "**主动接受自己的天性**，而不是把依赖型自尊看作不利因素想舍弃它。",
+      "成长过程中会犯错、遇到困难，但要坚持自我、不畏失败、保持谦虚，逐步建立前两种自尊。"
+    ]},
+    {t:"三种自尊的识别", l:[
+      "**依赖型自尊**：与别人比较，依赖别人评价。",
+      "**独立型自尊**：与自己比较（\"我这本书比我之前写的更好\"）。",
+      "**无条件自尊**：不在乎别人甚至自己的评价（\"我开心我写成了一本书，别人写得更好我会更开心\"）。"
+    ]},
+    {t:"为什么培养独立自尊重要", l:[
+      "屈从权威、种族主义（想与人比较）；被局限在框架中、局限在前人的路。",
+      "\"我要和所有人做得都不一样\"也是一种依赖型自尊——因为行为仍取决于他人。",
+      "去真正思考自己想干什么、为什么这么选择；多问问题、不断学习；对自我的存在感到感激。",
+      "独立自尊通常表现得更平静；冥想、运动带来的 Calm（平静）可增加独立自尊。",
+      "综合榜样们的优点，久而久之可实现。"
+    ]},
+    {t:"自尊的稳定性", l:[
+      "自尊的稳定性决定一个人是仁慈的还是容易有敌意的：**拥有不稳定高自尊的人更易表达敌意；稳定高自尊的人更易表达慷慨和仁慈**。",
+      "分化良好（独立自尊）的表现：同意他人意见时不觉得失去自我，不同意时不觉受排挤。",
+      "越在乎别人评价，越害怕尝试，越想完美。"
+    ]},
+    {t:"\"无名咒语\"练习", l:[
+      "假设你中了一个无名咒语：从此余生，没有人知道你在做什么、你有多好多仁慈、多富有多强大、多重要——只有你自己知道。在这样的世界里，你会怎么做？",
+      "这个练习不是要你那样生活，而是磨练你在**抛开赞扬和声望的情况下**会做什么——帮你发现真正想做的事。"
+    ]},
+    {t:"自我实现", l:[
+      "自我实现：我们能更多感觉到自己存在。",
+      "忠于原则的人更忠于内心，更能照顾自己，更容易增长对他人的移情；有强烈自我认同才能认同他人。",
+      "与其一直试图获取别人认同，**自由表达自我可以让我们更平静**。",
+      "人需要到45-50岁才能全部实现自我价值。",
+      "行动改变态度更快：**如果想要高自尊，就表现出高自尊的样子**。",
+      "追逐荣誉和认可，荣誉会躲避你；躲避荣誉，荣誉会追逐你。"
+    ]},
+    {t:"提高自尊的其他方法", l:[
+      "Calmer（平静冥想）；给自己时间去思考；诚实；想象无人了解你的世界（见上）。",
+      "想得到某种特质，就向榜样（拥有该特质的人）的行为看齐。",
+      "优秀的人/高自尊者的特质：① **罗马不是一天建成的**——高认知是过程、时间、自我认知，学会一次次跌倒爬起、从失败中吸取营养、自我接纳、迎接生活、勇于试错、全然为人；② **真实真诚**——保持真实自信，不夸大也不贬低自己，高度自尊者往往谦和、不刻意炫耀（\"谦逊不过是另一种形式的炫耀\"），自尊的对立面是傲慢、自恋、狂妄自大、目空一切。",
+      "那些感到弱小的人往往成为恶霸，自卑的人往往夸夸其谈、欺凌弱小、趾高气扬——这都是内在焦虑的表现，是自尊的反面；自卑者需寻求外界肯定而掩饰自卑，行为常是夸大夸张的。",
+      "行为改变态度：\"当我追逐荣誉时，荣誉避着我走；当我避着荣誉走时，荣誉追逐我。\"——为他人目光追逐虚名，真成就反而远离；专注于自己、专注于做事，荣誉就奔你而来。"
+    ]}
+  ],
+  quote:[
+    {t:"每个人都有依赖性自尊，重要是依赖程度的多少。",f:""},
+    {t:"追逐荣誉和认可，荣誉会躲避你；躲避荣誉，荣誉会追逐你。",f:""},
+    {t:"行动改变态度更快——想要高自尊，就表现出高自尊的样子。",f:""},
+    {t:"自我实现，指的是我们能更多感觉到自己存在。",f:""}
+  ]
+},
+{
+  no:23, theme:"关系与自我篇", title:"收获交流",
+  key:[
+    "课程只是开始；**改变的核心是引入行为改变（behaviour change）**。",
+    "**\"What is the most personal is the most general\"**（最个人的，也是最普遍的）——人性相通。",
+    "分享经历、表达自我，而不是一味铸造防线来掩饰和装点自己。",
+    "**Be the change you want to see in the world.**"
+  ],
+  deep:[
+    {t:"总结与分享", l:[
+      "这是课程的最后一课，主要总结和分享，很多学生分享了自己的得着、反思、对生活的改变。",
+      "从这门课学到的是开始，还有很多改变需要在之后完成；**改变的核心是引入行为改变**。",
+      "\"没有人会来拯救你，但你也并不孤独。\"——要转变就要行动。",
+      "分享经历，让别人了解自己，而不是铸造防线掩饰自己。每个人都有自己的方式和愿意卸下盔甲的亲密关系——那是我们可以真正做自己、练习表达自我的地方。",
+      "好好经营这样的地方，能帮助我们找到自我、散发自己真正的能量。",
+      "照顾好自己（from the deep foundation），并成为你想在世界上看到的改变。这需要时间和努力。"
+    ]}
+  ],
+  quote:[
+    {t:"What is the most personal is the most general.（最个人的，也是最普遍的。）",f:""},
+    {t:"Be the change you want to see in the world.（成为你想看到的改变。）",f:""},
+    {t:"你并不孤独。然而，没人会来拯救你。要转变，就要行动。",f:""}
+  ]
+}
+];
+
+/* ============ 状态 ============ */
+const DONE_KEY='happiness_lessons_done';
+let done=new Set(JSON.parse(localStorage.getItem(DONE_KEY)||'[]'));
+let cur=1;              // 当前课
+let view='overview';    // 当前视图
+
+/* ============ 渲染：侧边导航 ============ */
+function renderNav(){
+  const box=document.getElementById('sideNav');
+  let html='';
+  PHASES.forEach(p=>{
+    html+='<div class="phase">'+p.name+'</div><ul class="navlist">';
+    p.lessons.forEach(n=>{
+      const l=LESSONS.find(x=>x.no===n);
+      html+='<li><a href="#lessons-'+n+'" class="'+(done.has(n)?'done':'')+'" data-navless="'+n+'"><span class="no">'+String(n).padStart(2,'0')+'</span>'+l.title+'<span class="dot"></span></a></li>';
+    });
+    html+='</ul>';
+  });
+  box.innerHTML=html;
+}
+
+/* ============ 渲染：总览地图 ============ */
+function renderOverview(){
+  const box=document.getElementById('overviewBody');
+  let html='';
+  PHASES.forEach(p=>{
+    html+='<div class="phase-card"><h2><span class="ph-tag" style="background:'+p.tag+'">'+p.name+'</span>'+p.desc+'</h2>';
+    html+='<p class="ph-desc">'+p.desc+'</p><div class="grid">';
+    p.lessons.forEach(n=>{
+      const l=LESSONS.find(x=>x.no===n);
+      html+='<a href="#lessons-'+n+'"><span class="no">'+String(n).padStart(2,'0')+'</span><span>'+l.title+'</span><span class="st">'+(done.has(n)?'已学':'未学')+'</span></a>';
+    });
+    html+='</div></div>';
+  });
+  box.innerHTML=html;
+}
+
+/* ============ 渲染：单课 ============ */
+function inline(html){
+  return html
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
+}
+function renderLesson(){
+  const l=LESSONS.find(x=>x.no===cur);
+  if(!l)return;
+  let html='';
+  html+='<div class="lesson-card"><div class="lesson-head"><div class="badge gold">'+String(l.no).padStart(2,'0')+'</div><div><h2>第'+cn(l.no)+'课 · '+l.title+'</h2><div class="theme">'+l.theme+'</div></div></div>';
+  // 分区锚点条
+  html+='<div class="part-bar"><a class="part-link" data-part="part-key" href="#part-key">核心要点</a><a class="part-link" data-part="part-deep" href="#part-deep">深入解读</a><a class="part-link" data-part="part-quote" href="#part-quote">金句</a></div>';
+  html+='<div class="lesson-body">';
+  // 核心要点
+  html+='<div id="part-key"><span class="section-label key">核心要点</span><ul class="card-list">';
+  l.key.forEach(k=>{html+='<li>'+inline(k)+'</li>';});
+  html+='</ul></div>';
+  // 深入解读
+  html+='<div id="part-deep"><span class="section-label deep">深入解读</span>';
+  l.deep.forEach(d=>{
+    html+='<div class="deep-block"><div class="dtitle"><span>'+d.t+'</span><span class="chev">▾</span></div><ul class="card-list">';
+    d.l.forEach(x=>{html+='<li>'+inline(x)+'</li>';});
+    html+='</ul></div>';
+  });
+  html+='</div>';
+  // 金句
+  html+='<div id="part-quote"><span class="section-label quote">金句</span>';
+  l.quote.forEach(q=>{
+    const src=q.f?('<span class="src">'+q.f+'</span>'):'';
+    html+='<div class="quote-block">'+inline(q.t)+src+'</div>';
+  });
+  html+='</div></div></div>';
+  // 完成切换按钮
+  html+='<div class="toolbar"><button id="toggleDone" class="'+(done.has(l.no)?'on':'')+'">'+(done.has(l.no)?'已标记完成 · 点击取消':'标记本课已完成')+'</button></div>';
+  document.getElementById('lessonBody').innerHTML=html;
+  document.getElementById('curPos').textContent='第 '+l.no+' / 23 课';
+  document.getElementById('toggleDone').onclick=toggleDone;
+  // 更新侧边激活
+  document.querySelectorAll('.navlist a').forEach(a=>a.classList.toggle('active',a.dataset.navless==String(cur)));
+}
+function cn(n){const w=['零','一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十','二十一','二十二','二十三'];return w[n];}
+
+/* ============ 完成切换 / 进度 ============ */
+function toggleDone(){
+  const was=done.has(cur);
+  was?done.delete(cur):done.add(cur);
+  localStorage.setItem(DONE_KEY,JSON.stringify([...done]));
+  renderLesson();renderNav();renderOverview();updateProgress();
+  toast(was?'已取消第'+cn(cur)+'课的完成标记':'已标记第'+cn(cur)+'课完成');
+}
+function updateProgress(){
+  const n=done.size;
+  document.getElementById('progFill').style.width=(n/23*100)+'%';
+  document.getElementById('progPct').textContent=n+'/23';
+}
+
+/* ============ Hash 路由 ============ */
+function parseHash(){
+  const h=(location.hash||'').replace('#','');
+  if(/^lessons-(\d+)$/.test(h)){const n=parseInt(h.split('-')[1]);return {view:'lessons',no:(n>=1&&n<=23)?n:1};}
+  if(h==='view-lessons')return {view:'lessons'};
+  if(h==='concepts')return {view:'concepts'};
+  if(h==='erratum')return {view:'erratum'};
+  return {view:'overview'};
+}
+function setHash(v,no){
+  const h=(v==='lessons'&&no)?('lessons-'+no):v;
+  if(location.hash==='#'+h){goView(v);return;}
+  location.hash=h;
+}
+function applyHash(){
+  const p=parseHash();
+  if(p.no){cur=p.no;}
+  goView(p.view);
+}
+
+/* ============ 视图切换 ============ */
+function goView(v){
+  view=v;
+  document.querySelectorAll('.view').forEach(s=>s.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  if(v==='lessons'){renderLesson();refreshQuote();}
+  if(v==='overview'){renderOverview();}
+  if(v==='concepts'){renderConcepts('');}
+  if(v==='erratum'){renderErratum();}
+  // 激活导航
+  document.querySelectorAll('.navlist a').forEach(a=>a.classList.toggle('active',a.dataset.navless==String(cur)));
+  const navtop=document.querySelector('.navtop');
+  if(navtop)navtop.classList.toggle('active',v!=='lessons');
+  // 移动端收起目录
+  document.getElementById('sidebar').classList.remove('open');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ============ 速查表 ============ */
+function renderConcepts(kw){
+  const body=document.getElementById('conceptBody');
+  const q=(kw||'').trim().toLowerCase();
+  const list=CONCEPTS.filter(c=>!q||c.n.toLowerCase().includes(q)||c.d.toLowerCase().includes(q)||c.c.toLowerCase().includes(q));
+  let html='';
+  list.forEach(c=>{
+    html+='<tr><td class="cname">'+c.n+'</td><td>'+c.d+'</td><td class="ccur">第'+c.c+'课</td></tr>';
+  });
+  body.innerHTML=html;
+  document.getElementById('conceptEmpty').style.display=list.length?'none':'block';
+}
+
+/* ============ 勘误 ============ */
+function renderErratum(){
+  let html='<h2>交叉校验说明与勘误</h2><p class="intro">'+ERRATUM.intro+'</p>';
+  html+='<h3><span class="ok">A. 各来源一致、可放心引用</span></h3><ul>';
+  ERRATUM.A.forEach(x=>html+='<li>'+inline(x)+'</li>');
+  html+='</ul><h3><span class="warn">B. 存在出入、已做取舍</span></h3><ul>';
+  ERRATUM.B.forEach(x=>html+='<li>'+inline(x)+'</li>');
+  html+='</ul><h3>注意点</h3><ul><li>'+inline(ERRATUM.note)+'</li></ul>';
+  document.getElementById('erratumBody').innerHTML=html;
+}
+
+/* ============ 金句轮播 ============ */
+let qidx=-1;
+function refreshQuote(){
+  if(QUOTES.length===0)return;
+  let n;
+  do{n=Math.floor(Math.random()*QUOTES.length);}while(n===qidx&&QUOTES.length>1);
+  qidx=n;const q=QUOTES[n];
+  document.getElementById('quoteDaily').innerHTML=
+    '<div class="qtext">'+q.t+'</div><div class="qfrom">'+(q.f?q.f:'')+'</div><div style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button onclick="nextQuote()">换一句</button><button data-quoteall="1" style="border:none;background:var(--paper);color:var(--sun-deep);border:1px solid var(--line);padding:8px 18px;border-radius:999px;cursor:pointer;font-family:inherit;font-size:13px;transition:background .15s">全部金句</button></div>';
+}
+function nextQuote(){refreshQuote();}
+function openQuoteModal(){
+  let h='';
+  QUOTES.forEach(q=>{h+='<div class="m-quote">'+q.t+(q.f?'<span class="f">'+q.f+'</span>':'')+'</div>';});
+  document.getElementById('quoteModalBody').innerHTML=h;
+  document.getElementById('quoteModal').classList.add('open');
+}
+function closeQuoteModal(){document.getElementById('quoteModal').classList.remove('open');}
+
+/* ============ toast ============ */
+let toastTimer;
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(toastTimer);toastTimer=setTimeout(function(){t.classList.remove('show');},1800);
+}
+
+/* ============ 字号控制 ============ */
+function setFont(delta){
+  let fs=parseInt(localStorage.getItem('happiness_font')||'16');
+  fs=Math.min(18,Math.max(14,fs+delta));
+  localStorage.setItem('happiness_font',String(fs));
+  document.documentElement.style.setProperty('--fs',fs+'px');
+}
+
+/* ============ 事件绑定 ============ */
+document.addEventListener('click',function(e){
+  // 课/视图导航（hash）
+  const go=e.target.closest('[data-go]');
+  if(go){e.preventDefault();setHash('lessons',parseInt(go.dataset.go));return;}
+  const nav=e.target.closest('[data-nav]');
+  if(nav){e.preventDefault();setHash(nav.dataset.nav);return;}
+  // 分区锚点滚动
+  const pl=e.target.closest('.part-link');
+  if(pl){e.preventDefault();const t=document.getElementById(pl.dataset.part);if(t)t.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  // 深入解读小节折叠
+  const dt=e.target.closest('.dtitle');
+  if(dt){dt.parentElement.classList.toggle('collapsed');return;}
+  // 回顶
+  if(e.target.closest('#toTop')){window.scrollTo({top:0,behavior:'smooth'});return;}
+  // 金句全库
+  if(e.target.closest('[data-quoteall]')){openQuoteModal();return;}
+  if(e.target.closest('#quoteClose')){closeQuoteModal();return;}
+  if(e.target.closest('.modal-overlay')&&!e.target.closest('.modal')){closeQuoteModal();return;}
+  // 汉堡目录
+  if(e.target.closest('#menuToggle')){document.getElementById('sidebar').classList.toggle('open');return;}
+});
+document.getElementById('prevBtn').addEventListener('click',function(){if(cur>1)setHash('lessons',cur-1);});
+document.getElementById('nextBtn').addEventListener('click',function(){if(cur<23)setHash('lessons',cur+1);});
+document.getElementById('resetAllBtn').addEventListener('click',function(){
+  if(confirm('确定要清空全部学习进度标记吗？')){
+    done=new Set();localStorage.setItem(DONE_KEY,'[]');
+    renderNav();renderOverview();updateProgress();toast('已清空全部学习进度');
+  }
+});
+document.getElementById('conceptSearch').addEventListener('input',function(){renderConcepts(this.value);});
+document.getElementById('clearSearch').addEventListener('click',function(){
+  document.getElementById('conceptSearch').value='';renderConcepts('');
+});
+document.getElementById('fontDec').addEventListener('click',function(){setFont(-1);});
+document.getElementById('fontInc').addEventListener('click',function(){setFont(1);});
+// 键盘左右翻课
+document.addEventListener('keydown',function(e){
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
+  if(e.key==='ArrowLeft'){if(cur>1){e.preventDefault();setHash('lessons',cur-1);}}
+  if(e.key==='ArrowRight'){if(cur<23){e.preventDefault();setHash('lessons',cur+1);}}
+});
+// 回顶按钮显示
+window.addEventListener('scroll',function(){
+  document.getElementById('toTop').classList.toggle('show',window.scrollY>500);
+});
+// hash 路由
+window.addEventListener('hashchange',applyHash);
+
+/* ============ 初始化 ============ */
+renderNav();renderOverview();updateProgress();setFont(0);applyHash();
+</script>
+</body>
+</html>
